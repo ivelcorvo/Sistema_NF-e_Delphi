@@ -138,6 +138,10 @@
             <Form>FormTemplateGestao</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="uFormClientesGestao.pas">
+            <Form>FormClientesGestao</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
