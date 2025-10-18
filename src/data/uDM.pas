@@ -16,6 +16,7 @@ type
     DataSource: TDataSource;
     FDQueryProdutosGET: TFDQuery;
     FDQueryProdutosRequest: TFDQuery;
+    FDQueryProdutoGET: TFDQuery;
   private
     { Private declarations }
   public

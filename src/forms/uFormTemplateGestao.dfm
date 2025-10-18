@@ -18,10 +18,6 @@ object FormTemplateGestao: TFormTemplateGestao
     Height = 384
     Align = alClient
     TabOrder = 0
-    ExplicitLeft = -319
-    ExplicitTop = 18
-    ExplicitWidth = 943
-    ExplicitHeight = 423
   end
   object PanelTitulo: TPanel
     Left = 0
@@ -30,8 +26,6 @@ object FormTemplateGestao: TFormTemplateGestao
     Height = 57
     Align = alTop
     TabOrder = 1
-    ExplicitLeft = -375
-    ExplicitWidth = 999
     object LabelTituloForm: TLabel
       Left = 16
       Top = 13
@@ -52,7 +46,6 @@ object FormTemplateGestao: TFormTemplateGestao
       Height = 55
       Align = alRight
       TabOrder = 0
-      ExplicitLeft = 375
       object ImagePesquisa: TImage
         Left = 568
         Top = 1
@@ -106,6 +99,7 @@ object FormTemplateGestao: TFormTemplateGestao
     Width = 1152
     Height = 384
     Align = alClient
+    ReadOnly = True
     TabOrder = 2
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
@@ -120,9 +114,6 @@ object FormTemplateGestao: TFormTemplateGestao
     Height = 384
     Align = alRight
     TabOrder = 3
-    ExplicitLeft = 568
-    ExplicitTop = 18
-    ExplicitHeight = 423
     object ImageEditar: TImage
       Left = 1
       Top = 55

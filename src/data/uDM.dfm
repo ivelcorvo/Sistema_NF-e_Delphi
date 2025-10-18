@@ -29,4 +29,9 @@ object DM: TDM
     Left = 16
     Top = 152
   end
+  object FDQueryProdutoGET: TFDQuery
+    Connection = FDConnection
+    Left = 96
+    Top = 104
+  end
 end

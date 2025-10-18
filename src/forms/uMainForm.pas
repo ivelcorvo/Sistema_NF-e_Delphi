@@ -13,6 +13,7 @@ type
     GestaoOPClientes: TMenuItem;
     GestaoOPProdutos: TMenuItem;
     procedure GestaoOPClientesClick(Sender: TObject);
+    procedure GestaoOPProdutosClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -26,7 +27,7 @@ implementation
 
 {$R *.dfm}
 
-uses uFormClientesGestao;
+uses uFormClientesGestao, uFormProdutosGestao;
 
 procedure TMainForm.GestaoOPClientesClick(Sender: TObject);
 var
@@ -39,6 +40,20 @@ begin
     form.ShowModal;
   finally
     form.free;
+  end;
+end;
+
+procedure TMainForm.GestaoOPProdutosClick(Sender: TObject);
+var
+  form: TFormProdutosGestao;
+begin
+  form := nil;
+  try
+    form          := TFormProdutosGestao.Create(Self);
+    form.Position := poScreenCenter;
+    form.ShowModal;
+  finally
+    form.Free;
   end;
 end;
 

@@ -138,12 +138,25 @@
             <Form>FormTemplateGestao</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="uFormClientesGestao.pas">
+        <DCCReference Include="src\forms\uFormClientesGestao.pas">
             <Form>FormClientesGestao</Form>
+        </DCCReference>
+        <DCCReference Include="src\forms\uFormProdutosGestao.pas">
+            <Form>FormProdutosGestao</Form>
+        </DCCReference>
+        <DCCReference Include="src\forms\uFormTemplateProdutos_INSERIR_EDITAR.pas">
+            <Form>FormTemplateProdutos_INSERIR_EDITAR</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="uFormProdutosGestao.pas">
-            <Form>FormProdutosGestao</Form>
+        <DCCReference Include="src\forms\uFormProdutos_INSERIR.pas">
+            <Form>FormProdutos_INSERIR</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="src\forms\uFormProdutos_EDITAR.pas">
+            <Form>FormProdutos_EDITAR</Form>
+        </DCCReference>
+        <DCCReference Include="src\forms\uFormExcluirProduto.pas">
+            <Form>FormExcluirProduto</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Base">

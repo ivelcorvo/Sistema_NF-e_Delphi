@@ -26,6 +26,7 @@ object MainForm: TMainForm
       object GestaoOPProdutos: TMenuItem
         Caption = 'Produtos'
         ShortCut = 113
+        OnClick = GestaoOPProdutosClick
       end
     end
   end
