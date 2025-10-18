@@ -37,7 +37,6 @@ begin
     form          := TFormClientesGestao.Create(Self);
     form.Position := poScreenCenter;
     form.ShowModal;
-
   finally
     form.free;
   end;

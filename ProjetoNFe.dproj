@@ -142,6 +142,10 @@
             <Form>FormClientesGestao</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="uFormProdutosGestao.pas">
+            <Form>FormProdutosGestao</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
