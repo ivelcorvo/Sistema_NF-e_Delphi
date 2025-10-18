@@ -1,0 +1,97 @@
+# ========================================
+# 🧠 .gitignore para Delphi 12 (Athens)
+# ========================================
+
+# 🔹 Pastas de histórico e backup do Delphi IDE
+__history/
+__recovery/
+__debug_bin/
+__debug_info/
+__recovery_data/
+
+# 🔹 Compilação e builds
+Win32/
+Win64/
+Android/
+iOSDevice/
+iOSSimulator/
+Linux64/
+Debug/
+Release/
+
+# 🔹 Arquivos binários e intermediários
+*.exe
+*.dll
+*.bpl
+*.dcp
+*.dcu
+*.lib
+*.so
+*.apk
+*.aab
+*.drc
+*.map
+*.res
+*.rsm
+*.tds
+*.o
+*.obj
+*.bpi
+*.gch
+
+# 🔹 Arquivos temporários e cache do Delphi
+*.identcache
+*.local
+*.tvsconfig
+*.dsk
+*.stat
+*.projdata
+*.tvsconfig
+*.bak
+*.~*
+*.tmp
+*.cfg
+
+# 🔹 Arquivos de configuração do projeto (locais ao dev)
+*.dproj.local
+*.dproj.local.*
+*.globalcache
+*.bdsproj.local
+
+# 🔹 Arquivos gerados pelo compilador/IDE
+*.otares
+*.groupproj.local
+*.groupproj.local.*
+*.bdsproj
+*.tvsconfig
+
+# 🔹 Logs
+*.log
+
+# 🔹 Ferramentas externas
+.idea/
+.vscode/
+node_modules/
+*.ini
+*.bat
+*.cmd
+
+# 🔹 Banco de dados temporários (ex: Firebird local)
+*.fdb
+*.ib
+*.gdb
+
+# 🔹 Outras pastas locais
+__pycache__/
+backup/
+temp/
+logs/
+
+# 🔹 Arquivos de build temporário (compilação cruzada)
+*.deployproj.local
+*.deployproj.local.*
+*.deployproj.*
+
+# 🔹 Evita envio de configurações pessoais do Embarcadero
+*.bdsconfig
+*.globalsettings
