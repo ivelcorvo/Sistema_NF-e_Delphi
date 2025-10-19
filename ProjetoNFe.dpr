@@ -10,7 +10,11 @@ uses
   uFormTemplateProdutos_INSERIR_EDITAR in 'src\forms\uFormTemplateProdutos_INSERIR_EDITAR.pas' {FormTemplateProdutos_INSERIR_EDITAR},
   uFormProdutos_INSERIR in 'src\forms\uFormProdutos_INSERIR.pas' {FormProdutos_INSERIR},
   uFormProdutos_EDITAR in 'src\forms\uFormProdutos_EDITAR.pas' {FormProdutos_EDITAR},
-  uFormExcluirProduto in 'src\forms\uFormExcluirProduto.pas' {FormExcluirProduto};
+  uFormExcluirProduto in 'src\forms\uFormExcluirProduto.pas' {FormExcluirProduto},
+  uFormTemplateClientes_INSERIR_EDITAR in 'src\forms\uFormTemplateClientes_INSERIR_EDITAR.pas' {FormTemplateClientes_INSERIR_EDITAR},
+  uFormClientes_INSERIR in 'src\forms\uFormClientes_INSERIR.pas' {FormClientes_INSERIR},
+  uUtils in 'src\utils\uUtils.pas',
+  uFormClientes_EDITAR in 'src\forms\uFormClientes_EDITAR.pas' {FormClientes_EDITAR};
 
 {$R *.res}
 
@@ -19,11 +23,6 @@ begin
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TDM, DM);
   Application.CreateForm(TMainForm, MainForm);
-  Application.CreateForm(TFormClientesGestao, FormClientesGestao);
-  Application.CreateForm(TFormProdutosGestao, FormProdutosGestao);
-  Application.CreateForm(TFormTemplateProdutos_INSERIR_EDITAR, FormTemplateProdutos_INSERIR_EDITAR);
-  Application.CreateForm(TFormProdutos_INSERIR, FormProdutos_INSERIR);
-  Application.CreateForm(TFormProdutos_EDITAR, FormProdutos_EDITAR);
-  Application.CreateForm(TFormExcluirProduto, FormExcluirProduto);
+  Application.CreateForm(TFormClientes_EDITAR, FormClientes_EDITAR);
   Application.Run;
 end.

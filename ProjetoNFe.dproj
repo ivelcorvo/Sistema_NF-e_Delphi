@@ -159,6 +159,18 @@
             <Form>FormExcluirProduto</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="src\forms\uFormTemplateClientes_INSERIR_EDITAR.pas">
+            <Form>FormTemplateClientes_INSERIR_EDITAR</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="src\forms\uFormClientes_INSERIR.pas">
+            <Form>FormClientes_INSERIR</Form>
+        </DCCReference>
+        <DCCReference Include="src\utils\uUtils.pas"/>
+        <DCCReference Include="src\forms\uFormClientes_EDITAR.pas">
+            <Form>FormClientes_EDITAR</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

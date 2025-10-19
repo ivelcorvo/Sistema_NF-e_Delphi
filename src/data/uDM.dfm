@@ -1,6 +1,6 @@
 object DM: TDM
-  Height = 480
-  Width = 640
+  Height = 797
+  Width = 1197
   object FDConnection: TFDConnection
     Params.Strings = (
       
@@ -33,5 +33,20 @@ object DM: TDM
     Connection = FDConnection
     Left = 96
     Top = 104
+  end
+  object FDQueryClientesGET: TFDQuery
+    Connection = FDConnection
+    Left = 8
+    Top = 280
+  end
+  object FDQueryClienteGET: TFDQuery
+    Connection = FDConnection
+    Left = 104
+    Top = 280
+  end
+  object FDQueryClientesRequest: TFDQuery
+    Connection = FDConnection
+    Left = 8
+    Top = 344
   end
 end

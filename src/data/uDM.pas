@@ -17,6 +17,9 @@ type
     FDQueryProdutosGET: TFDQuery;
     FDQueryProdutosRequest: TFDQuery;
     FDQueryProdutoGET: TFDQuery;
+    FDQueryClientesGET: TFDQuery;
+    FDQueryClienteGET: TFDQuery;
+    FDQueryClientesRequest: TFDQuery;
   private
     { Private declarations }
   public

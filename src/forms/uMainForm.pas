@@ -35,11 +35,11 @@ var
 begin
   form := nil;
   try
-    form          := TFormClientesGestao.Create(Self);
+    form := TFormClientesGestao.Create(Self);
     form.Position := poScreenCenter;
     form.ShowModal;
   finally
-    form.free;
+    form.Free;
   end;
 end;
 
