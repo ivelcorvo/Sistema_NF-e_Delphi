@@ -1,5 +1,5 @@
 inherited FormProdutosGestao: TFormProdutosGestao
-  Caption = 'FormProdutosGestao'
+  Caption = 'Gest'#227'o produtos'
   StyleElements = [seFont, seClient, seBorder]
   OnShow = FormShow
   TextHeight = 15

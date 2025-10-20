@@ -14,7 +14,8 @@ uses
   uFormTemplateClientes_INSERIR_EDITAR in 'src\forms\uFormTemplateClientes_INSERIR_EDITAR.pas' {FormTemplateClientes_INSERIR_EDITAR},
   uFormClientes_INSERIR in 'src\forms\uFormClientes_INSERIR.pas' {FormClientes_INSERIR},
   uUtils in 'src\utils\uUtils.pas',
-  uFormClientes_EDITAR in 'src\forms\uFormClientes_EDITAR.pas' {FormClientes_EDITAR};
+  uFormClientes_EDITAR in 'src\forms\uFormClientes_EDITAR.pas' {FormClientes_EDITAR},
+  uFormExcluirCliente in 'src\forms\uFormExcluirCliente.pas' {FormExcluirCliente};
 
 {$R *.res}
 
@@ -24,5 +25,6 @@ begin
   Application.CreateForm(TDM, DM);
   Application.CreateForm(TMainForm, MainForm);
   Application.CreateForm(TFormClientes_EDITAR, FormClientes_EDITAR);
+  Application.CreateForm(TFormExcluirCliente, FormExcluirCliente);
   Application.Run;
 end.

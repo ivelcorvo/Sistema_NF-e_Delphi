@@ -1,5 +1,5 @@
 inherited FormClientesGestao: TFormClientesGestao
-  Caption = 'FormClientesGestao'
+  Caption = 'Gest'#227'o clientes'
   StyleElements = [seFont, seClient, seBorder]
   OnShow = FormShow
   TextHeight = 15
@@ -22,6 +22,11 @@ inherited FormClientesGestao: TFormClientesGestao
     StyleElements = [seFont, seClient, seBorder]
     inherited ImageEditar: TImage
       OnClick = ImageEditarClick
+    end
+    inherited ImageExcluir: TImage
+      OnClick = ImageExcluirClick
+      ExplicitLeft = 6
+      ExplicitTop = 115
     end
     inherited ImageAdicinar: TImage
       OnClick = ImageAdicinarClick

@@ -19,6 +19,8 @@ procedure ApenasNumeros(var Key: Char);
 
 function FormatPreco(const Valor: Double): string;
 
+function RemoveUltimoElemento(var S:String; const C:String):String;
+
 implementation
 
 function ListaUFs: TStringList;
@@ -108,6 +110,13 @@ end;
 function FormatPreco(const Valor: Double): string;
 begin
   Result := FormatFloat('0.00', Valor);
+end;
+
+function RemoveUltimoElemento(var S:String; const C:String):String;
+begin
+  if S.EndsWith(C) then
+    Delete(S, Length(S)-Length(C)+1, Length(C));
+  Result := S;
 end;
 
 end.

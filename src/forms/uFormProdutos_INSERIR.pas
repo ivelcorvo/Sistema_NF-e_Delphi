@@ -24,7 +24,7 @@ implementation
 
 {$R *.dfm}
 
-uses uDM;
+uses uDM, uUtils;
 
 procedure TFormProdutos_INSERIR.ButtonCancelarClick(Sender: TObject);
 begin
@@ -36,9 +36,29 @@ procedure TFormProdutos_INSERIR.ButtonSalvarClick(Sender: TObject);
 var
   preco: string;
   estoque: string;
+  campos_em_branco: string;
 begin
   inherited;
   try
+
+    campos_em_branco :='';
+    if((EditNomeProduto.Text='') or (EditNCM.Text='') or (EditCFOP.Text='')) then
+    begin
+      campos_em_branco :='Por favor prencha os campos: ';
+
+      if (EditNomeProduto.Text='') then
+        campos_em_branco := campos_em_branco + 'Nome, ';
+      if (EditNCM.Text='') then
+        campos_em_branco := campos_em_branco + 'NCM, ';
+      if (EditCFOP.Text='') then
+        campos_em_branco := campos_em_branco + 'CFOP, ';
+
+      campos_em_branco := RemoveUltimoElemento(campos_em_branco,', ');
+
+      ShowMessage(campos_em_branco);
+      Exit;
+    end;
+
     with DM.FDQueryProdutosRequest do
     begin
       Close;

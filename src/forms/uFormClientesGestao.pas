@@ -12,6 +12,7 @@ type
     procedure FormShow(Sender: TObject);
     procedure ImageAdicinarClick(Sender: TObject);
     procedure ImageEditarClick(Sender: TObject);
+    procedure ImageExcluirClick(Sender: TObject);
   private
     procedure CarregarClientes;
   public
@@ -25,7 +26,7 @@ implementation
 
 {$R *.dfm}
 
-uses uDM, uFormClientes_INSERIR, uFormClientes_EDITAR;
+uses uDM, uFormClientes_INSERIR, uFormClientes_EDITAR, uFormExcluirCliente;
 
 procedure TFormClientesGestao.CarregarClientes;
 begin
@@ -101,6 +102,48 @@ begin
   finally
     form.free;
   end;
+
+end;
+
+procedure TFormClientesGestao.ImageExcluirClick(Sender: TObject);
+var
+  form:TFormExcluirCliente;
+  IDCLiente: Integer;
+  NMCliente: String;
+  CPF_CNPJ: String;
+begin
+  inherited;
+  form := nil;
+
+  try
+    with DM.FDQueryClientesGET do
+    begin
+      if (not Active) or (RecordCount=0) or (IsEmpty) then
+      begin
+        ShowMessage('Nenhum cliente selecionado!');
+        Exit;
+      end
+      else
+      begin
+        IDCLiente := FieldByName('ID').AsInteger;
+        NMCliente := FieldByName('NOME').AsString;
+        CPF_CNPJ  := FieldByName('CPF_CNPJ').AsString;
+      end;
+    end;
+
+    form           := TFormExcluirCliente.Create(Self);
+    form.Position  := poScreenCenter;
+    form.IDCliente := IDCLiente;
+
+    form.LabelDadosCliente.Caption := 'Nome: '+NMCliente+'. Registro: '+CPF_CNPJ+'.';
+
+    if form.ShowModal= mrOk then
+      CarregarClientes;
+
+  finally
+    form.Free;
+  end;
+
 
 end;
 

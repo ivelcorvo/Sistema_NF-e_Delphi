@@ -147,7 +147,7 @@ begin
     form.Position             := poScreenCenter;
     form.IDProduto            := IDProduto;
 
-    form.LabelDescricaoProduto.Caption := 'Nome: '+NMProduto+' NCM: '+NCMProduto+' CFOP: '+CFOPProduto ;
+    form.LabelDescricaoProduto.Caption := 'Nome: '+NMProduto+'. NCM: '+NCMProduto+'. CFOP: '+CFOPProduto+'.' ;
 
     if form.ShowModal=mrOk then
       CarregarProdutos;
