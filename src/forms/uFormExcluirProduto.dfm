@@ -24,12 +24,12 @@ object FormExcluirProduto: TFormExcluirProduto
     Font.Style = [fsBold]
     ParentFont = False
   end
-  object lblNMProduto: TLabel
+  object LabelDescricaoProduto: TLabel
     Left = 8
     Top = 49
-    Width = 76
+    Width = 122
     Height = 15
-    Caption = 'lblNMProduto'
+    Caption = 'LabelDescricaoProduto'
   end
   object ButtonCancelar: TButton
     Left = 328

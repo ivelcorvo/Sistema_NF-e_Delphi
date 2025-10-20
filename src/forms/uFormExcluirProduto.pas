@@ -11,7 +11,7 @@ type
     LabelTituloExcluir: TLabel;
     ButtonCancelar: TButton;
     ButtonConfirmar: TButton;
-    lblNMProduto: TLabel;
+    LabelDescricaoProduto: TLabel;
     procedure ButtonCancelarClick(Sender: TObject);
     procedure ButtonConfirmarClick(Sender: TObject);
   private

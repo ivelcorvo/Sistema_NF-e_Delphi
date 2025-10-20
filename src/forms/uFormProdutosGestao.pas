@@ -121,9 +121,11 @@ var
   form:TFormExcluirProduto;
   IDProduto: Integer;
   NMProduto: string;
+  NCMProduto: string;
+  CFOPProduto: string;
 begin
   inherited;
-  form := nil;  
+  form := nil;
   try
     with dm.FDQueryProdutosGET do
     begin
@@ -134,16 +136,19 @@ begin
       end
       else
       begin
-        IDProduto := FieldByName('ID').AsInteger;
-        NMProduto := FieldByName('NOME').AsString;
+        IDProduto   := FieldByName('ID').AsInteger;
+        NMProduto   := FieldByName('NOME').AsString;
+        NCMProduto  := FieldByName('NCM').AsString;
+        CFOPProduto := FieldByName('CFOP').AsString;
       end;
     end;
-  
+
     form                      := TFormExcluirProduto.Create(Self);
     form.Position             := poScreenCenter;
-    form.IDProduto            := IDProduto;        
-    form.lblNMProduto.Caption := 'Nome produto: '+NMProduto;
-    
+    form.IDProduto            := IDProduto;
+
+    form.LabelDescricaoProduto.Caption := 'Nome: '+NMProduto+' NCM: '+NCMProduto+' CFOP: '+CFOPProduto ;
+
     if form.ShowModal=mrOk then
       CarregarProdutos;
                   

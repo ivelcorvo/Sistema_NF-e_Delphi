@@ -11,10 +11,16 @@ inherited FormProdutos_EDITAR: TFormProdutos_EDITAR
   inherited LabelEstoqueProduto: TLabel
     StyleElements = [seFont, seClient, seBorder]
   end
-  inherited EditNomeProduto: TEdit
+  inherited LabelNCM: TLabel
     StyleElements = [seFont, seClient, seBorder]
   end
-  inherited EditPrecoProduto: TEdit
+  inherited LabelCFOP: TLabel
+    StyleElements = [seFont, seClient, seBorder]
+  end
+  inherited LabelUnidade: TLabel
+    StyleElements = [seFont, seClient, seBorder]
+  end
+  inherited EditNomeProduto: TEdit
     StyleElements = [seFont, seClient, seBorder]
   end
   inherited EditEstoqueProduto: TEdit
@@ -25,5 +31,17 @@ inherited FormProdutos_EDITAR: TFormProdutos_EDITAR
   end
   inherited ButtonSalvar: TButton
     OnClick = ButtonSalvarClick
+  end
+  inherited ComboBoxUnidade: TComboBox
+    StyleElements = [seFont, seClient, seBorder]
+  end
+  inherited EditPrecoProduto: TEdit
+    StyleElements = [seFont, seClient, seBorder]
+  end
+  inherited EditNCM: TEdit
+    StyleElements = [seFont, seClient, seBorder]
+  end
+  inherited EditCFOP: TEdit
+    StyleElements = [seFont, seClient, seBorder]
   end
 end

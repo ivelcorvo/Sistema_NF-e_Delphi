@@ -13,6 +13,12 @@ function TipoPessoaCharParaDB(const Indice: Integer): Char;
 
 function TipoPessoaStringParaDB(const C: String): String;
 
+procedure ApenasNumerosPreco(var Key: Char);
+
+procedure ApenasNumeros(var Key: Char);
+
+function FormatPreco(const Valor: Double): string;
+
 implementation
 
 function ListaUFs: TStringList;
@@ -87,4 +93,22 @@ begin
       Result := '';
 end;
 
+procedure ApenasNumeros(var Key: Char);
+begin
+  if not (Key in ['0'..'9', #8]) then
+    Key := #0;
+end;
+
+procedure ApenasNumerosPreco(var Key: Char);
+begin
+  if not (Key in ['0'..'9', ',', #8]) then
+    Key := #0;
+end;
+
+function FormatPreco(const Valor: Double): string;
+begin
+  Result := FormatFloat('0.00', Valor);
+end;
+
 end.
+
