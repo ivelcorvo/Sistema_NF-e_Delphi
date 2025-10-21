@@ -14,10 +14,10 @@ type
     procedure FormCreate(Sender: TObject);
     procedure ButtonSalvarClick(Sender: TObject);
   private
-    { Private declarations }
-  public
-    { Public declarations }
+    procedure RefatoraPorTipoPessoa;
     procedure CarregaUFs;
+  public
+
   end;
 
 var
@@ -28,6 +28,33 @@ implementation
 {$R *.dfm}
 
 uses uUtils, uDM;
+
+procedure TFormClientes_INSERIR.RefatoraPorTipoPessoa;
+begin
+  if ComboBoxTipoPessoa.ItemIndex <> -1 then
+  begin
+    case ComboBoxTipoPessoa.ItemIndex of
+      0:
+      begin
+        Label_CPF_CNPJ.Caption     := 'CPF';
+        MaskEdit_CPF_CNPJ.ReadOnly := False;
+        MaskEdit_CPF_CNPJ.EditText := '';
+        MaskEdit_CPF_CNPJ.EditMask := '999.999.999-99;1;_';
+        EditIE.ReadOnly            := True;
+        EditIE.Text                := '';
+      end;
+      1:
+      begin
+        Label_CPF_CNPJ.Caption     := 'CNPJ';
+        MaskEdit_CPF_CNPJ.ReadOnly := False;
+        MaskEdit_CPF_CNPJ.EditText := '';
+        MaskEdit_CPF_CNPJ.EditMask := '99.999.999/9999-99;1;_';
+        EditIE.ReadOnly            := False;
+        EditIE.Text                := '';
+      end;
+    end;
+  end;
+end;
 
 procedure TFormClientes_INSERIR.CarregaUFs;
 begin
@@ -42,9 +69,31 @@ begin
 end;
 
 procedure TFormClientes_INSERIR.ButtonSalvarClick(Sender: TObject);
+var
+  campos_em_branco:string;
 begin
   inherited;
   try
+
+    campos_em_branco := '';
+    if (EditNome.Text='') or (ComboBoxTipoPessoa.Text='') or ((ComboBoxTipoPessoa.Text='Pessoa Jurídica')and(EditIE.text='')) or (LimparDocumento(MaskEdit_CPF_CNPJ.Text)='') then
+    begin
+      campos_em_branco := 'Por favor preencha os campos: ';
+
+      if (EditNome.Text='') then
+        campos_em_branco := campos_em_branco + 'Nome, ';
+      if (ComboBoxTipoPessoa.Text='') then
+        campos_em_branco := campos_em_branco + 'Tipo de pessoa, ';
+      if ((ComboBoxTipoPessoa.Text='Pessoa Jurídica')and(EditIE.text='')) then
+        campos_em_branco := campos_em_branco + 'IE, ';
+      if (LimparDocumento(MaskEdit_CPF_CNPJ.Text)='') then
+        campos_em_branco := campos_em_branco + 'CPF/CNPJ, ';
+
+      campos_em_branco := RemoveUltimoElemento(campos_em_branco,', ');
+
+      ShowMessage(campos_em_branco);
+      Exit;
+    end;
 
     if (EditNome.text='') or (MaskEdit_CPF_CNPJ.Text='') then
     begin
@@ -82,29 +131,7 @@ end;
 procedure TFormClientes_INSERIR.ComboBoxTipoPessoaChange(Sender: TObject);
 begin
   inherited;
-  if ComboBoxTipoPessoa.ItemIndex <> -1 then
-  begin
-    case ComboBoxTipoPessoa.ItemIndex of
-      0:
-      begin
-        Label_CPF_CNPJ.Caption     := 'CPF';
-        MaskEdit_CPF_CNPJ.ReadOnly := False;
-        MaskEdit_CPF_CNPJ.EditText := '';
-        MaskEdit_CPF_CNPJ.EditMask := '999.999.999-99;1;_';
-        EditIE.ReadOnly            := True;
-        EditIE.Text                := '';
-      end;
-      1:
-      begin
-        Label_CPF_CNPJ.Caption     := 'CNPJ';
-        MaskEdit_CPF_CNPJ.ReadOnly := False;
-        MaskEdit_CPF_CNPJ.EditText := '';
-        MaskEdit_CPF_CNPJ.EditMask := '99.999.999/9999-99;1;_';
-        EditIE.ReadOnly            := False;
-        EditIE.Text                := '';
-      end;
-    end;
-  end;
+  RefatoraPorTipoPessoa;
 end;
 
 procedure TFormClientes_INSERIR.FormCreate(Sender: TObject);

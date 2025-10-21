@@ -24,7 +24,5 @@ begin
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TDM, DM);
   Application.CreateForm(TMainForm, MainForm);
-  Application.CreateForm(TFormClientes_EDITAR, FormClientes_EDITAR);
-  Application.CreateForm(TFormExcluirCliente, FormExcluirCliente);
   Application.Run;
 end.

@@ -13,8 +13,12 @@ inherited FormClientesGestao: TFormClientesGestao
     end
     inherited PanelPesquisa: TPanel
       StyleElements = [seFont, seClient, seBorder]
+      inherited ImagePesquisa: TImage
+        OnClick = ImagePesquisaClick
+      end
       inherited EditPesquisa: TEdit
         StyleElements = [seFont, seClient, seBorder]
+        OnKeyPress = EditPesquisaKeyPress
       end
     end
   end

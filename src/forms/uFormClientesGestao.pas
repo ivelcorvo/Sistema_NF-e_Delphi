@@ -13,6 +13,8 @@ type
     procedure ImageAdicinarClick(Sender: TObject);
     procedure ImageEditarClick(Sender: TObject);
     procedure ImageExcluirClick(Sender: TObject);
+    procedure ImagePesquisaClick(Sender: TObject);
+    procedure EditPesquisaKeyPress(Sender: TObject; var Key: Char);
   private
     procedure CarregarClientes;
   public
@@ -43,6 +45,17 @@ begin
   except
     on E:Exception do
       ShowMessage('Houve um erro... Erro: '+E.Message);
+  end;
+end;
+
+procedure TFormClientesGestao.EditPesquisaKeyPress(Sender: TObject;
+  var Key: Char);
+begin
+  inherited;
+  if key=#13 then
+  begin
+    key := #0;
+    ImagePesquisaClick(Sender);
   end;
 end;
 
@@ -145,6 +158,60 @@ begin
   end;
 
 
+end;
+
+procedure TFormClientesGestao.ImagePesquisaClick(Sender: TObject);
+var
+  test:integer;
+  sql_pesquisa:String;
+begin
+  inherited;
+  try
+
+    if not(EditPesquisa.Text='') then
+    begin
+      with DM.FDQueryClientesGET do
+      begin
+        Close;
+
+        sql_pesquisa := 'SELECT * FROM CLIENTES WHERE '+
+        'UPPER(NOME) LIKE :PESQUISA '+
+        'OR UPPER(ENDERECO) LIKE :PESQUISA '+
+        'OR UPPER(BAIRRO) LIKE :PESQUISA '+
+        'OR UPPER(CIDADE) LIKE :PESQUISA '+
+        'OR UPPER(EMAIL) LIKE :PESQUISA ';
+
+        test:= Length(EditPesquisa.Text);
+
+        if Length(EditPesquisa.Text)<2 then
+          sql_pesquisa := sql_pesquisa + 'OR UPPER(TIPO_PESSOA) LIKE :PESQUISA ';
+        if Length(EditPesquisa.Text)<3 then
+          sql_pesquisa := sql_pesquisa + 'OR UPPER(UF) LIKE :PESQUISA ';
+        if Length(EditPesquisa.Text)<11 then
+          sql_pesquisa := sql_pesquisa + 'OR CEP LIKE :PESQUISA OR NUMERO LIKE :PESQUISA ';
+        if Length(EditPesquisa.Text)<19 then
+          sql_pesquisa := sql_pesquisa + 'OR CPF_CNPJ LIKE :PESQUISA ';
+        if Length(EditPesquisa.Text)<21 then
+          sql_pesquisa := sql_pesquisa + 'OR IE LIKE :PESQUISA OR TELEFONE LIKE :PESQUISA ';
+
+        SQL.Text := sql_pesquisa;
+
+        if Length(EditPesquisa.Text)<3 then
+          ParamByName('PESQUISA').AsString := UpperCase(EditPesquisa.Text)
+        else
+          ParamByName('PESQUISA').AsString := '%'+UpperCase(EditPesquisa.Text)+'%';
+
+        Open;
+      end;
+    end
+    else
+    begin
+      CarregarClientes;
+    end;
+  except
+    on E:Exception do
+      ShowMessage('Houve um erro... Erro: '+E.Message);
+  end;
 end;
 
 end.
