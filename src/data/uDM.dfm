@@ -36,17 +36,17 @@ object DM: TDM
   end
   object FDQueryClientesGET: TFDQuery
     Connection = FDConnection
-    Left = 168
+    Left = 352
     Top = 104
   end
   object FDQueryClienteGET: TFDQuery
     Connection = FDConnection
-    Left = 200
+    Left = 384
     Top = 104
   end
   object FDQueryClientesRequest: TFDQuery
     Connection = FDConnection
-    Left = 168
+    Left = 352
     Top = 160
   end
   object FDQueryNotasFiscaisGET: TFDQuery
@@ -64,17 +64,17 @@ object DM: TDM
       'JOIN CLIENTES C ON C.ID = NF.ID_CLIENTE'
       'ORDER BY NF.DATA_EMISSAO DESC'
       '')
-    Left = 336
+    Left = 520
     Top = 104
   end
   object FDQueryNotaFiscalGET: TFDQuery
     Connection = FDConnection
-    Left = 368
+    Left = 552
     Top = 104
   end
   object FDQueryNotasFiscaisRequest: TFDQuery
     Connection = FDConnection
-    Left = 336
+    Left = 520
     Top = 160
   end
   object FDQueryNotasItensGET: TFDQuery
@@ -93,7 +93,7 @@ object DM: TDM
       'WHERE I.ID_NOTA = :ID_NOTA'
       'ORDER BY I.ID'
       '')
-    Left = 504
+    Left = 808
     Top = 104
     ParamData = <
       item
@@ -105,12 +105,34 @@ object DM: TDM
   end
   object FDQueryNotaItemGET: TFDQuery
     Connection = FDConnection
-    Left = 536
+    Left = 840
     Top = 104
   end
   object FDQueryNotasItensRequest: TFDQuery
     Connection = FDConnection
-    Left = 504
+    Left = 808
     Top = 160
+  end
+  object FDMemTableProdutos: TFDMemTable
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
+    UpdateOptions.CheckRequired = False
+    UpdateOptions.AutoCommitUpdates = True
+    Left = 120
+    Top = 104
+  end
+  object FDMemTableNFeProdutos: TFDMemTable
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
+    UpdateOptions.CheckRequired = False
+    UpdateOptions.AutoCommitUpdates = True
+    Left = 920
+    Top = 104
   end
 end

@@ -16,7 +16,11 @@ uses
   uUtils in 'src\utils\uUtils.pas',
   uFormClientes_EDITAR in 'src\forms\uFormClientes_EDITAR.pas' {FormClientes_EDITAR},
   uFormExcluirCliente in 'src\forms\uFormExcluirCliente.pas' {FormExcluirCliente},
-  uFormNFesGestao in 'src\forms\uFormNFesGestao.pas' {FormNFesGestao};
+  uFormNFesGestao in 'src\forms\uFormNFesGestao.pas' {FormNFesGestao},
+  UFormTemplateNFes_NOVA_EDITAR in 'src\forms\UFormTemplateNFes_NOVA_EDITAR.pas' {FormTemplateNFes_NOVA_EDITAR},
+  uFormNFes_NOVA in 'src\forms\uFormNFes_NOVA.pas' {FormNFes_NOVA},
+  uFormTemplateNFesProdutos_INSERIR_EDITAR in 'src\forms\uFormTemplateNFesProdutos_INSERIR_EDITAR.pas' {FormTemplateNFesProdutos_INSERIR_EDITAR},
+  uFormNFesProdutos_INSERIR in 'src\forms\uFormNFesProdutos_INSERIR.pas' {FormNFesProdutos_INSERIR};
 
 {$R *.res}
 
@@ -25,6 +29,5 @@ begin
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TDM, DM);
   Application.CreateForm(TMainForm, MainForm);
-  Application.CreateForm(TFormNFesGestao, FormNFesGestao);
   Application.Run;
 end.

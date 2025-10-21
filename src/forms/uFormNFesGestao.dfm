@@ -20,6 +20,9 @@ inherited FormNFesGestao: TFormNFesGestao
   end
   inherited PanelBotoes: TPanel
     StyleElements = [seFont, seClient, seBorder]
+    inherited ImageAdicinar: TImage
+      OnClick = ImageAdicinarClick
+    end
     object ImageTransmitir: TImage
       Left = 1
       Top = 163

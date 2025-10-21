@@ -179,6 +179,22 @@
             <Form>FormNFesGestao</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="src\forms\UFormTemplateNFes_NOVA_EDITAR.pas">
+            <Form>FormTemplateNFes_NOVA_EDITAR</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="src\forms\uFormNFes_NOVA.pas">
+            <Form>FormNFes_NOVA</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="src\forms\uFormTemplateNFesProdutos_INSERIR_EDITAR.pas">
+            <Form>FormTemplateNFesProdutos_INSERIR_EDITAR</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="src\forms\uFormNFesProdutos_INSERIR.pas">
+            <Form>FormNFesProdutos_INSERIR</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

@@ -11,6 +11,7 @@ type
   TFormNFesGestao = class(TFormTemplateGestao)
     ImageTransmitir: TImage;
     procedure FormShow(Sender: TObject);
+    procedure ImageAdicinarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -24,7 +25,7 @@ implementation
 
 {$R *.dfm}
 
-uses uDM;
+uses uDM, uFormNFes_NOVA;
 
 procedure TFormNFesGestao.FormShow(Sender: TObject);
 begin
@@ -33,7 +34,7 @@ begin
     with DM.FDQueryNotasFiscaisGET do
     begin
       Close;
-      SQL.Text := 'SELECT NF.ID, NF.NUMERO, NF.SERIE, NF.DATA_EMISSAO, NF.VALOR_TOTAL, NF.STATUS, C.NOME AS CLIENTE'+
+      SQL.Text := 'SELECT NF.ID, NF.NUMERO, NF.SERIE, NF.DATA_EMISSAO, NF.VALOR_TOTAL, NF.STATUS, C.NOME AS CLIENTE '+
       'FROM NOTAS_FISCAIS NF '+
       'JOIN CLIENTES C ON C.ID = NF.ID_CLIENTE '+
       'ORDER BY NF.DATA_EMISSAO DESC';
@@ -45,6 +46,24 @@ begin
     on E:Exception do
       ShowMessage('Houve um erro... Erro: '+E.Message);
   end;
+end;
+
+procedure TFormNFesGestao.ImageAdicinarClick(Sender: TObject);
+var
+  form:TFormNFes_NOVA;
+begin
+  inherited;
+  form := nil;
+  try
+    form          := TFormNFes_NOVA.Create(Self);
+    form.Position := poScreenCenter;
+
+    form.onExibir;
+    form.ShowModal;
+  finally
+    form.Free;
+  end;
+
 end;
 
 end.

@@ -26,6 +26,8 @@ type
     FDQueryNotasItensGET: TFDQuery;
     FDQueryNotaItemGET: TFDQuery;
     FDQueryNotasItensRequest: TFDQuery;
+    FDMemTableProdutos: TFDMemTable;
+    FDMemTableNFeProdutos: TFDMemTable;
   private
     { Private declarations }
   public
