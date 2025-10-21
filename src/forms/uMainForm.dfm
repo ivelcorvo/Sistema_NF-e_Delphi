@@ -28,6 +28,11 @@ object MainForm: TMainForm
         ShortCut = 113
         OnClick = GestaoOPProdutosClick
       end
+      object GestaoOPNFes: TMenuItem
+        Caption = 'NF-es'
+        ShortCut = 114
+        OnClick = GestaoOPNFesClick
+      end
     end
   end
 end

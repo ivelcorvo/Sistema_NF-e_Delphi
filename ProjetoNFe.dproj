@@ -175,6 +175,10 @@
             <Form>FormExcluirCliente</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="src\forms\uFormNFesGestao.pas">
+            <Form>FormNFesGestao</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

@@ -15,7 +15,8 @@ uses
   uFormClientes_INSERIR in 'src\forms\uFormClientes_INSERIR.pas' {FormClientes_INSERIR},
   uUtils in 'src\utils\uUtils.pas',
   uFormClientes_EDITAR in 'src\forms\uFormClientes_EDITAR.pas' {FormClientes_EDITAR},
-  uFormExcluirCliente in 'src\forms\uFormExcluirCliente.pas' {FormExcluirCliente};
+  uFormExcluirCliente in 'src\forms\uFormExcluirCliente.pas' {FormExcluirCliente},
+  uFormNFesGestao in 'src\forms\uFormNFesGestao.pas' {FormNFesGestao};
 
 {$R *.res}
 
@@ -24,5 +25,6 @@ begin
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TDM, DM);
   Application.CreateForm(TMainForm, MainForm);
+  Application.CreateForm(TFormNFesGestao, FormNFesGestao);
   Application.Run;
 end.

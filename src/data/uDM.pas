@@ -20,6 +20,12 @@ type
     FDQueryClientesGET: TFDQuery;
     FDQueryClienteGET: TFDQuery;
     FDQueryClientesRequest: TFDQuery;
+    FDQueryNotasFiscaisGET: TFDQuery;
+    FDQueryNotaFiscalGET: TFDQuery;
+    FDQueryNotasFiscaisRequest: TFDQuery;
+    FDQueryNotasItensGET: TFDQuery;
+    FDQueryNotaItemGET: TFDQuery;
+    FDQueryNotasItensRequest: TFDQuery;
   private
     { Private declarations }
   public

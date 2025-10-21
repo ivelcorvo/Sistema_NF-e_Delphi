@@ -27,26 +27,90 @@ object DM: TDM
   object FDQueryProdutosRequest: TFDQuery
     Connection = FDConnection
     Left = 16
-    Top = 152
+    Top = 160
   end
   object FDQueryProdutoGET: TFDQuery
     Connection = FDConnection
-    Left = 96
+    Left = 48
     Top = 104
   end
   object FDQueryClientesGET: TFDQuery
     Connection = FDConnection
-    Left = 8
-    Top = 280
+    Left = 168
+    Top = 104
   end
   object FDQueryClienteGET: TFDQuery
     Connection = FDConnection
-    Left = 104
-    Top = 280
+    Left = 200
+    Top = 104
   end
   object FDQueryClientesRequest: TFDQuery
     Connection = FDConnection
-    Left = 8
-    Top = 344
+    Left = 168
+    Top = 160
+  end
+  object FDQueryNotasFiscaisGET: TFDQuery
+    Connection = FDConnection
+    SQL.Strings = (
+      'SELECT '
+      '  NF.ID,'
+      '  NF.NUMERO,'
+      '  NF.SERIE,'
+      '  NF.DATA_EMISSAO,'
+      '  NF.VALOR_TOTAL,'
+      '  NF.STATUS,'
+      '  C.NOME AS CLIENTE'
+      'FROM NOTAS_FISCAIS NF'
+      'JOIN CLIENTES C ON C.ID = NF.ID_CLIENTE'
+      'ORDER BY NF.DATA_EMISSAO DESC'
+      '')
+    Left = 336
+    Top = 104
+  end
+  object FDQueryNotaFiscalGET: TFDQuery
+    Connection = FDConnection
+    Left = 368
+    Top = 104
+  end
+  object FDQueryNotasFiscaisRequest: TFDQuery
+    Connection = FDConnection
+    Left = 336
+    Top = 160
+  end
+  object FDQueryNotasItensGET: TFDQuery
+    Connection = FDConnection
+    SQL.Strings = (
+      'SELECT '
+      '  I.ID,'
+      '  I.ID_NOTA,'
+      '  I.ID_PRODUTO,'
+      '  P.NOME AS PRODUTO,'
+      '  I.QUANTIDADE,'
+      '  I.VALOR_UNITARIO,'
+      '  I.VALOR_TOTAL'
+      'FROM NOTAS_ITENS I'
+      'JOIN PRODUTOS P ON P.ID = I.ID_PRODUTO'
+      'WHERE I.ID_NOTA = :ID_NOTA'
+      'ORDER BY I.ID'
+      '')
+    Left = 504
+    Top = 104
+    ParamData = <
+      item
+        Name = 'ID_NOTA'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = Null
+      end>
+  end
+  object FDQueryNotaItemGET: TFDQuery
+    Connection = FDConnection
+    Left = 536
+    Top = 104
+  end
+  object FDQueryNotasItensRequest: TFDQuery
+    Connection = FDConnection
+    Left = 504
+    Top = 160
   end
 end
