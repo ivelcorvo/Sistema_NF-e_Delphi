@@ -16,6 +16,7 @@ inherited FormNFesProdutos_INSERIR: TFormNFesProdutos_INSERIR
   end
   inherited EditQuantidade: TEdit
     StyleElements = [seFont, seClient, seBorder]
+    OnChange = EditQuantidadeChange
   end
   inherited EditPreco: TEdit
     StyleElements = [seFont, seClient, seBorder]

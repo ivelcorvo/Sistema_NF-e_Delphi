@@ -13,7 +13,7 @@ uses
 type
   TFormTemplateNFes_NOVA_EDITAR = class(TForm)
     PanelNFe: TPanel;
-    DBGridProdutos: TDBGrid;
+    DBGridProdutosNFe: TDBGrid;
     Label1: TLabel;
     ComboBoxCliente: TComboBox;
     DateTimeDataEmisao: TDateTimePicker;

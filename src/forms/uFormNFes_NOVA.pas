@@ -15,7 +15,8 @@ type
     procedure ImageAdicinarClick(Sender: TObject);
   private
     procedure CarregaProdutos;
-    //procedure CarregaNFeProdutos;
+    procedure CarregaNFeProdutos;
+    procedure CarregaEstruturaNFeProdutos;
   public
     procedure onExibir;
   end;
@@ -38,22 +39,33 @@ begin
       SQL.Text := 'SELECT * FROM PRODUTOS';
       Open;
     end;
-
-    DM.FDMemTableProdutos.Close;
+    // CRIANDO TABELA NA MEMORIA
     DM.FDMemTableProdutos.CopyDataSet(DM.FDQueryProdutosGET, [coStructure,coAppend]);
-
-    //  apenas para vizualização
-    //  DataSource.DataSet        := DM.FDMemTableProdutos;
-    //  DBGridProdutos.DataSource := DataSource;
   except
     on E:Exception do
       ShowMessage('Houve um erro... Erro: '+E.Message);
   end;
 end;
 
-//procedure TFormNFes_NOVA.CarregaNFeProdutos;
-//begin
-//end;
+procedure TFormNFes_NOVA.CarregaEstruturaNFeProdutos;
+begin
+  try
+    DM.FDQueryNotasItensGET.Close;
+    DM.FDQueryNotasItensGET.Open;
+
+    // COPIA APENAS A ESTRUTURA DE FDQueryNotasItensGET
+    DM.FDMemTableNFeProdutos.CopyDataSet(DM.FDQueryNotasItensGET,[coStructure]);
+  except
+    on E:Exception do
+      ShowMessage('Houve um erro... Erro: '+E.Message);
+  end;
+end;
+
+procedure TFormNFes_NOVA.CarregaNFeProdutos;
+begin
+  DataSource.DataSet           := DM.FDMemTableNFeProdutos;
+  DBGridProdutosNFe.DataSource := DataSource;
+end;
 
 procedure TFormNFes_NOVA.ImageAdicinarClick(Sender: TObject);
 var
@@ -66,7 +78,10 @@ begin
     form.Position := poScreenCenter;
 
     form.onExibir;
-    form.ShowModal;
+
+    if form.ShowModal=mrok then
+      CarregaNFeProdutos;
+
   finally
     form.Free;
   end;
@@ -75,6 +90,7 @@ end;
 procedure TFormNFes_NOVA.onExibir;
 begin
   CarregaProdutos;
+  CarregaEstruturaNFeProdutos;
 end;
 
 end.

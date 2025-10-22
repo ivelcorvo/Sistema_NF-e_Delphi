@@ -18,7 +18,6 @@ object FormTemplateNFes_NOVA_EDITAR: TFormTemplateNFes_NOVA_EDITAR
     Height = 73
     Align = alTop
     TabOrder = 0
-    ExplicitWidth = 1268
     object Label1: TLabel
       Left = 8
       Top = 8
@@ -88,7 +87,7 @@ object FormTemplateNFes_NOVA_EDITAR: TFormTemplateNFes_NOVA_EDITAR
       TabOrder = 4
     end
   end
-  object DBGridProdutos: TDBGrid
+  object DBGridProdutosNFe: TDBGrid
     Left = 0
     Top = 73
     Width = 1279
@@ -117,9 +116,6 @@ object FormTemplateNFes_NOVA_EDITAR: TFormTemplateNFes_NOVA_EDITAR
     Height = 407
     Align = alRight
     TabOrder = 3
-    ExplicitLeft = 1152
-    ExplicitTop = 57
-    ExplicitHeight = 384
     object ImageEditar: TImage
       Left = 1
       Top = 55

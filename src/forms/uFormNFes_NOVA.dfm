@@ -4,7 +4,6 @@ inherited FormNFes_NOVA: TFormNFes_NOVA
   TextHeight = 15
   inherited PanelNFe: TPanel
     StyleElements = [seFont, seClient, seBorder]
-    ExplicitWidth = 1335
     inherited Label1: TLabel
       StyleElements = [seFont, seClient, seBorder]
     end
@@ -29,9 +28,6 @@ inherited FormNFes_NOVA: TFormNFes_NOVA
   end
   inherited PanelBotoes: TPanel
     StyleElements = [seFont, seClient, seBorder]
-    ExplicitLeft = 1279
-    ExplicitTop = 73
-    ExplicitHeight = 407
     inherited ImageAdicinar: TImage
       OnClick = ImageAdicinarClick
     end
