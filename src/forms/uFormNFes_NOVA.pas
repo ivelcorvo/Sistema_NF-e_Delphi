@@ -50,11 +50,25 @@ end;
 procedure TFormNFes_NOVA.CarregaEstruturaNFeProdutos;
 begin
   try
-    DM.FDQueryNotasItensGET.Close;
-    DM.FDQueryNotasItensGET.Open;
+    //    DM.FDQueryNotasItensGET.Close;
+    //    DM.FDQueryNotasItensGET.Open;
+    //    // COPIA APENAS A ESTRUTURA DE FDQueryNotasItensGET
+    //    DM.FDMemTableNFeProdutos.CopyDataSet(DM.FDQueryNotasItensGET,[coStructure]);
 
-    // COPIA APENAS A ESTRUTURA DE FDQueryNotasItensGET
-    DM.FDMemTableNFeProdutos.CopyDataSet(DM.FDQueryNotasItensGET,[coStructure]);
+    with DM.FDMemTableNFeProdutos do
+    begin
+      Close;
+      FieldDefs.Clear;
+
+      FieldDefs.Add('ID_PRODUTO',ftInteger);
+      FieldDefs.Add('PRODUTO',ftString,100);
+      FieldDefs.Add('QUANTIDADE',ftInteger);
+      FieldDefs.Add('VALOR_UNITARIO',ftFloat);
+      FieldDefs.Add('VALOR_TOTAL',ftFloat);
+
+      CreateDataSet;
+    end;
+
   except
     on E:Exception do
       ShowMessage('Houve um erro... Erro: '+E.Message);

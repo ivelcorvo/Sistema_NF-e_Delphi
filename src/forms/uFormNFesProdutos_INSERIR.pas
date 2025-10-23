@@ -97,22 +97,24 @@ begin
 
     with DBLookupComboBoxProduto.ListSource.DataSet do
     begin
-      id             := FieldByName('ID').asinteger;
-      valor_unitario := FieldByName('PRECO').asinteger;      
+      id             := FieldByName('ID').AsInteger;
+      valor_unitario := FieldByName('PRECO').asFloat;
     end;
 
     with DM.FDMemTableNFeProdutos do
-    begin 
+    begin
       Open;
       Append;
       FieldByName('ID_PRODUTO').AsInteger   := id;
-      FieldByName('VALOR_UNITARIO').AsFloat := valor_unitario;      
-      FieldByName('QUANTIDADE').AsInteger   := StrToInt(EditQuantidade.text);         
+      FieldByName('PRODUTO').AsString       := DBLookupComboBoxProduto.Text;
+      FieldByName('VALOR_UNITARIO').AsFloat := valor_unitario;
+      FieldByName('QUANTIDADE').AsInteger   := StrToInt(EditQuantidade.text);
+      FieldByName('VALOR_TOTAL').AsFloat    := valor_unitario * StrToInt(EditQuantidade.text);
       Post;
     end;
 
     ModalResult := mrOk
-    
+
   except
     on E:Exception do
       ShowMessage('Houve um erro... Erro: '+E.Message);
