@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
-  uFormTemplateNFesProdutos_INSERIR_EDITAR, Vcl.StdCtrls, Vcl.DBCtrls, Data.DB;
+  uFormTemplateNFesProdutos_INSERIR_EDITAR, Vcl.StdCtrls, Vcl.DBCtrls, Data.DB, FireDAC.Comp.DataSet,FireDAC.Comp.Client;
 
 type
   TFormNFesProdutos_INSERIR = class(TFormTemplateNFesProdutos_INSERIR_EDITAR)
@@ -30,10 +30,40 @@ implementation
 uses uFormNFes_NOVA, uDM;
 
 procedure TFormNFesProdutos_INSERIR.CarregaComboBoxProdutos;
+var
+  fdmtProdutos:TFDMemTable;
+  id:Integer;
 begin
-  DataSource.DataSet := DM.FDMemTableProdutos;
 
-  // NÃOSEI PQ ASSIM NÃO FUNCIONA
+  fdmtProdutos := TFDMemTable.Create(nil);
+
+  // COPIA ESTRUTUDA E DADSO DE FDMemTableProdutos (QUE JA É COPIA DE FDQueryProdutosGET)
+  fdmtProdutos.Close;
+  fdmtProdutos.CopyDataSet(DM.FDMemTableProdutos,[coStructure,coAppend]);
+
+  // REMOVE PRODUTOS DE fdmtProdutos QUE JA FORAM ADICIONADOS EM FDMemTableNFeProdutos. PARA NÃO DUPLICAR NA NOTA
+  if not(DM.FDMemTableNFeProdutos.IsEmpty) then
+  begin
+    DM.FDMemTableNFeProdutos.First;
+    while not DM.FDMemTableNFeProdutos.Eof do
+    begin
+      id := DM.FDMemTableNFeProdutos.FieldByName('ID_PRODUTO').AsInteger;
+
+      if fdmtProdutos.Locate('ID',id,[]) then
+        fdmtProdutos.Delete;
+
+      DM.FDMemTableNFeProdutos.Next;
+    end;
+  end;
+
+  // ADICIONAD DADOS PARA EXIBIR NO COMBOBOX DE PRODUTOS
+  DataSource.DataSet := fdmtProdutos;
+
+  DBLookupComboBoxProduto.ListSource := DataSource;
+  DBLookupComboBoxProduto.KeyField   := 'ID';
+  DBLookupComboBoxProduto.ListField  := 'NOME';
+
+  // NÃO SEI PQ ASSIM NÃO FUNCIONA
   //  with DBLookupComboBoxProduto do
   //  begin
   //    ListSource := DataSource;
@@ -41,9 +71,6 @@ begin
   //    ListField  := 'NOME';
   //  end;
 
-  DBLookupComboBoxProduto.ListSource := DataSource;
-  DBLookupComboBoxProduto.KeyField   := 'ID';
-  DBLookupComboBoxProduto.ListField  := 'NOME';
 end;
 
 procedure TFormNFesProdutos_INSERIR.MultiplicaQuantidadePreco;
@@ -131,6 +158,5 @@ procedure TFormNFesProdutos_INSERIR.onExibir;
 begin
   CarregaComboBoxProdutos;
 end;
-
 
 end.

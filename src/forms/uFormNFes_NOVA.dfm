@@ -28,6 +28,9 @@ inherited FormNFes_NOVA: TFormNFes_NOVA
   end
   inherited PanelBotoes: TPanel
     StyleElements = [seFont, seClient, seBorder]
+    inherited ImageEditar: TImage
+      OnClick = ImageEditarClick
+    end
     inherited ImageAdicinar: TImage
       OnClick = ImageAdicinarClick
     end

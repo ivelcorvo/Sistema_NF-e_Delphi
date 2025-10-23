@@ -1,5 +1,5 @@
-inherited FormNFesProdutos_INSERIR: TFormNFesProdutos_INSERIR
-  Caption = 'NF-e produto adicionar'
+inherited FormNFesProdutos_EDITAR: TFormNFesProdutos_EDITAR
+  Caption = 'NF-e produto editar'
   StyleElements = [seFont, seClient, seBorder]
   TextHeight = 15
   inherited LabelProduto: TLabel
@@ -26,9 +26,6 @@ inherited FormNFesProdutos_INSERIR: TFormNFesProdutos_INSERIR
   end
   inherited ButtonCancelar: TButton
     OnClick = ButtonCancelarClick
-  end
-  inherited ButtonAdicionar: TButton
-    OnClick = ButtonAdicionarClick
   end
   inherited DBLookupComboBoxProduto: TDBLookupComboBox
     OnClick = DBLookupComboBoxProdutoClick

@@ -53,6 +53,7 @@ object FormTemplateNFesProdutos_INSERIR_EDITAR: TFormTemplateNFesProdutos_INSERI
     Width = 121
     Height = 23
     TabStop = False
+    Enabled = False
     ReadOnly = True
     TabOrder = 1
   end
@@ -62,6 +63,7 @@ object FormTemplateNFesProdutos_INSERIR_EDITAR: TFormTemplateNFesProdutos_INSERI
     Width = 121
     Height = 23
     TabStop = False
+    Enabled = False
     ReadOnly = True
     TabOrder = 2
   end

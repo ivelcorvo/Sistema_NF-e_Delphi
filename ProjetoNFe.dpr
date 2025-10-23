@@ -20,7 +20,8 @@ uses
   UFormTemplateNFes_NOVA_EDITAR in 'src\forms\UFormTemplateNFes_NOVA_EDITAR.pas' {FormTemplateNFes_NOVA_EDITAR},
   uFormNFes_NOVA in 'src\forms\uFormNFes_NOVA.pas' {FormNFes_NOVA},
   uFormTemplateNFesProdutos_INSERIR_EDITAR in 'src\forms\uFormTemplateNFesProdutos_INSERIR_EDITAR.pas' {FormTemplateNFesProdutos_INSERIR_EDITAR},
-  uFormNFesProdutos_INSERIR in 'src\forms\uFormNFesProdutos_INSERIR.pas' {FormNFesProdutos_INSERIR};
+  uFormNFesProdutos_INSERIR in 'src\forms\uFormNFesProdutos_INSERIR.pas' {FormNFesProdutos_INSERIR},
+  uFormNFesProdutos_EDITAR in 'src\forms\uFormNFesProdutos_EDITAR.pas' {FormNFesProdutos_EDITAR};
 
 {$R *.res}
 
@@ -29,5 +30,6 @@ begin
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TDM, DM);
   Application.CreateForm(TMainForm, MainForm);
+  Application.CreateForm(TFormNFesProdutos_EDITAR, FormNFesProdutos_EDITAR);
   Application.Run;
 end.
