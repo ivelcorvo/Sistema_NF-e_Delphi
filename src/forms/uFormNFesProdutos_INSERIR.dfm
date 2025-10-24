@@ -14,6 +14,9 @@ inherited FormNFesProdutos_INSERIR: TFormNFesProdutos_INSERIR
   inherited LabelTotal: TLabel
     StyleElements = [seFont, seClient, seBorder]
   end
+  inherited LabelNCM: TLabel
+    StyleElements = [seFont, seClient, seBorder]
+  end
   inherited EditQuantidade: TEdit
     StyleElements = [seFont, seClient, seBorder]
     OnChange = EditQuantidadeChange
@@ -32,5 +35,8 @@ inherited FormNFesProdutos_INSERIR: TFormNFesProdutos_INSERIR
   end
   inherited DBLookupComboBoxProduto: TDBLookupComboBox
     OnClick = DBLookupComboBoxProdutoClick
+  end
+  inherited EditNCM: TEdit
+    StyleElements = [seFont, seClient, seBorder]
   end
 end

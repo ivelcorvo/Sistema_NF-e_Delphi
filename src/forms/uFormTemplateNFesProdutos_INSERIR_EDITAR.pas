@@ -19,7 +19,10 @@ type
     ButtonAdicionar: TButton;
     DBLookupComboBoxProduto: TDBLookupComboBox;
     DataSource: TDataSource;
+    EditNCM: TEdit;
+    LabelNCM: TLabel;
     procedure EditQuantidadeKeyPress(Sender: TObject; var Key: Char);
+    procedure EditNCMKeyPress(Sender: TObject; var Key: Char);
   private
     { Private declarations }
   public
@@ -34,6 +37,12 @@ implementation
 {$R *.dfm}
 
 uses uUtils;
+
+procedure TFormTemplateNFesProdutos_INSERIR_EDITAR.EditNCMKeyPress(
+  Sender: TObject; var Key: Char);
+begin
+  ApenasNumeros(key);
+end;
 
 procedure TFormTemplateNFesProdutos_INSERIR_EDITAR.EditQuantidadeKeyPress(
   Sender: TObject; var Key: Char);

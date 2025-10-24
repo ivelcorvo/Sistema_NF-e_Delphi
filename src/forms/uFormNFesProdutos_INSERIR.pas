@@ -34,10 +34,9 @@ var
   fdmtProdutos:TFDMemTable;
   id:Integer;
 begin
-
   fdmtProdutos := TFDMemTable.Create(nil);
 
-  // COPIA ESTRUTUDA E DADSO DE FDMemTableProdutos (QUE JA É COPIA DE FDQueryProdutosGET)
+  // COPIA ESTRUTUDA E DADOS DE FDMemTableProdutos (QUE JA É COPIA DE FDQueryProdutosGET)
   fdmtProdutos.Close;
   fdmtProdutos.CopyDataSet(DM.FDMemTableProdutos,[coStructure,coAppend]);
 
@@ -97,6 +96,7 @@ begin
   begin
     with DBLookupComboBoxProduto.ListSource.DataSet do
     begin
+      EditNCM.Text   := FieldByName('NCM').AsString;
       EditPreco.text := FloatToStr(FieldByName('PRECO').AsFloat);
       MultiplicaQuantidadePreco;
     end;
@@ -137,6 +137,7 @@ begin
       FieldByName('VALOR_UNITARIO').AsFloat := valor_unitario;
       FieldByName('QUANTIDADE').AsInteger   := StrToInt(EditQuantidade.text);
       FieldByName('VALOR_TOTAL').AsFloat    := valor_unitario * StrToInt(EditQuantidade.text);
+      FIELDBYNAME('NCM').AsInteger          := StrToInt(EditNCM.Text);
       Post;
     end;
 

@@ -2,8 +2,8 @@ object FormTemplateNFesProdutos_INSERIR_EDITAR: TFormTemplateNFesProdutos_INSERI
   Left = 0
   Top = 0
   Caption = 'FormTemplateNFesProdutos_INSERIR_EDITAR'
-  ClientHeight = 106
-  ClientWidth = 672
+  ClientHeight = 166
+  ClientWidth = 435
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -19,79 +19,96 @@ object FormTemplateNFesProdutos_INSERIR_EDITAR: TFormTemplateNFesProdutos_INSERI
     Caption = 'Produto'
   end
   object LabelQuantidade: TLabel
-    Left = 335
-    Top = 11
+    Left = 99
+    Top = 67
     Width = 62
     Height = 15
     Caption = 'Quantidade'
   end
   object LabelPreco: TLabel
-    Left = 415
-    Top = 11
+    Left = 179
+    Top = 67
     Width = 30
     Height = 15
     Caption = 'Pre'#231'o'
   end
   object LabelTotal: TLabel
-    Left = 542
-    Top = 11
+    Left = 306
+    Top = 67
     Width = 26
     Height = 15
     Caption = 'Total'
   end
+  object LabelNCM: TLabel
+    Left = 7
+    Top = 67
+    Width = 28
+    Height = 15
+    Caption = 'NCM'
+  end
   object EditQuantidade: TEdit
-    Left = 335
-    Top = 32
+    Left = 99
+    Top = 88
     Width = 74
     Height = 23
-    TabOrder = 0
+    TabOrder = 2
     OnKeyPress = EditQuantidadeKeyPress
   end
   object EditPreco: TEdit
-    Left = 415
-    Top = 32
+    Left = 179
+    Top = 88
     Width = 121
     Height = 23
     TabStop = False
     Enabled = False
     ReadOnly = True
-    TabOrder = 1
+    TabOrder = 3
   end
   object EditTotal: TEdit
-    Left = 542
-    Top = 32
+    Left = 306
+    Top = 88
     Width = 121
     Height = 23
     TabStop = False
     Enabled = False
     ReadOnly = True
-    TabOrder = 2
+    TabOrder = 4
   end
   object ButtonCancelar: TButton
-    Left = 507
-    Top = 74
+    Left = 271
+    Top = 129
     Width = 75
     Height = 25
     Caption = 'Cancelar'
-    TabOrder = 3
+    TabOrder = 5
   end
   object ButtonAdicionar: TButton
-    Left = 588
-    Top = 74
+    Left = 352
+    Top = 129
     Width = 75
     Height = 25
     Caption = 'Adicionar'
-    TabOrder = 4
+    TabOrder = 6
   end
   object DBLookupComboBoxProduto: TDBLookupComboBox
     Left = 8
     Top = 32
-    Width = 321
+    Width = 419
     Height = 23
-    TabOrder = 5
+    TabOrder = 0
+  end
+  object EditNCM: TEdit
+    Left = 7
+    Top = 88
+    Width = 86
+    Height = 23
+    Enabled = False
+    MaxLength = 8
+    TabOrder = 1
+    OnKeyPress = EditNCMKeyPress
   end
   object DataSource: TDataSource
-    Left = 224
-    Top = 32
+    Left = 8
+    Top = 112
   end
 end

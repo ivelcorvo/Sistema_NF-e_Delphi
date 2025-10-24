@@ -14,6 +14,7 @@ type
   TFormNFes_NOVA = class(TFormTemplateNFes_NOVA_EDITAR)
     procedure ImageAdicinarClick(Sender: TObject);
     procedure ImageEditarClick(Sender: TObject);
+    procedure ImageExcluirClick(Sender: TObject);
   private
     procedure CarregaProdutos;
     procedure CarregaNFeProdutos;
@@ -29,7 +30,8 @@ implementation
 
 {$R *.dfm}
 
-uses uFormNFesProdutos_INSERIR, uDM, uFormNFesProdutos_EDITAR;
+uses uFormNFesProdutos_INSERIR, uDM, uFormNFesProdutos_EDITAR,
+  uFormNFesProdutos_EXCLUIR;
 
 procedure TFormNFes_NOVA.CarregaProdutos;
 begin
@@ -63,6 +65,7 @@ begin
 
       FieldDefs.Add('ID_PRODUTO',ftInteger);
       FieldDefs.Add('PRODUTO',ftString,100);
+      FieldDefs.Add('NCM',ftInteger);
       FieldDefs.Add('QUANTIDADE',ftInteger);
       FieldDefs.Add('VALOR_UNITARIO',ftFloat);
       FieldDefs.Add('VALOR_TOTAL',ftFloat);
@@ -137,6 +140,43 @@ begin
   finally
     form.Free;
   end;
+end;
+
+procedure TFormNFes_NOVA.ImageExcluirClick(Sender: TObject);
+var
+  form:TFormNFesProdutos_EXCLUIR;
+  IDProduto:Integer;
+  NMProduto:string;
+begin
+  inherited;
+  form := nil;
+  try
+    with DM.FDMemTableNFeProdutos do
+    begin
+      if (not Active) or (RecordCount=0) or (IsEmpty) then
+      begin
+        ShowMessage('Nenhum produto selecionado!');
+        Exit;
+      end
+      else
+      begin
+        IDProduto := FieldByName('ID_PRODUTO').AsInteger;
+        NMProduto := FieldByName('PRODUTO').AsString;
+      end;
+    end;
+
+    form                           := TFormNFesProdutos_EXCLUIR.Create(Self);
+    form.Position                  := poScreenCenter;
+    form.IDProduto                 := IDProduto;
+    form.LabelDadosProduto.Caption := 'Nome: '+NMProduto;
+
+    if form.ShowModal=mrOk then
+      CarregaNFeProdutos;
+
+  finally
+    form.Free;
+  end;
+
 end;
 
 procedure TFormNFes_NOVA.onExibir;

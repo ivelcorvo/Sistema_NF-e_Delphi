@@ -199,6 +199,10 @@
             <Form>FormNFesProdutos_EDITAR</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="src\forms\uFormNFesProdutos_EXCLUIR.pas">
+            <Form>FormNFesProdutos_EXCLUIR</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

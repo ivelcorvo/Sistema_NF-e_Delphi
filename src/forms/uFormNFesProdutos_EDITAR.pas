@@ -10,7 +10,6 @@ uses
 type
   TFormNFesProdutos_EDITAR = class(TFormTemplateNFesProdutos_INSERIR_EDITAR)
     procedure ButtonCancelarClick(Sender: TObject);
-    procedure DBLookupComboBoxProdutoClick(Sender: TObject);
     procedure EditQuantidadeChange(Sender: TObject);
   private
     procedure CarregarProduto;
@@ -79,6 +78,7 @@ begin
       DBLookupComboBoxProduto.Enabled  := False;
       EditPreco.Text                   := FloatToStr(DBLookupComboBoxProduto.ListSource.DataSet.FieldByName('PRECO').AsFloat);
       EditQuantidade.Text              := IntToStr(DM.FDMemTableNFeProdutos.FieldByName('quantidade').AsInteger);
+      EditNCM.Text                     := IntToStr(DBLookupComboBoxProduto.ListSource.DataSet.FieldByName('NCM').AsInteger);
       MultiplicaQuantidadePreco;
     end
     else
@@ -89,21 +89,6 @@ begin
 
   except
     on E:Exception do
-  end;
-end;
-
-procedure TFormNFesProdutos_EDITAR.DBLookupComboBoxProdutoClick(
-  Sender: TObject);
-begin
-  inherited;
-  inherited;
-  if (DBLookupComboBoxProduto.KeyValue <> Null) then
-  begin
-    with DBLookupComboBoxProduto.ListSource.DataSet do
-    begin
-      EditPreco.text := FloatToStr(FieldByName('PRECO').AsFloat);
-      MultiplicaQuantidadePreco;
-    end;
   end;
 end;
 

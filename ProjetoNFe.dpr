@@ -21,7 +21,8 @@ uses
   uFormNFes_NOVA in 'src\forms\uFormNFes_NOVA.pas' {FormNFes_NOVA},
   uFormTemplateNFesProdutos_INSERIR_EDITAR in 'src\forms\uFormTemplateNFesProdutos_INSERIR_EDITAR.pas' {FormTemplateNFesProdutos_INSERIR_EDITAR},
   uFormNFesProdutos_INSERIR in 'src\forms\uFormNFesProdutos_INSERIR.pas' {FormNFesProdutos_INSERIR},
-  uFormNFesProdutos_EDITAR in 'src\forms\uFormNFesProdutos_EDITAR.pas' {FormNFesProdutos_EDITAR};
+  uFormNFesProdutos_EDITAR in 'src\forms\uFormNFesProdutos_EDITAR.pas' {FormNFesProdutos_EDITAR},
+  uFormNFesProdutos_EXCLUIR in 'src\forms\uFormNFesProdutos_EXCLUIR.pas' {FormNFesProdutos_EXCLUIR};
 
 {$R *.res}
 
@@ -31,5 +32,6 @@ begin
   Application.CreateForm(TDM, DM);
   Application.CreateForm(TMainForm, MainForm);
   Application.CreateForm(TFormNFesProdutos_EDITAR, FormNFesProdutos_EDITAR);
+  Application.CreateForm(TFormNFesProdutos_EXCLUIR, FormNFesProdutos_EXCLUIR);
   Application.Run;
 end.

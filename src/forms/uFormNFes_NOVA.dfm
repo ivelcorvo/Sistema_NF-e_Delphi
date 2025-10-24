@@ -31,6 +31,9 @@ inherited FormNFes_NOVA: TFormNFes_NOVA
     inherited ImageEditar: TImage
       OnClick = ImageEditarClick
     end
+    inherited ImageExcluir: TImage
+      OnClick = ImageExcluirClick
+    end
     inherited ImageAdicinar: TImage
       OnClick = ImageAdicinarClick
     end
