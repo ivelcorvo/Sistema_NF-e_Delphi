@@ -10,12 +10,12 @@ uses
 type
   TFormNFesGestao = class(TFormTemplateGestao)
     ImageTransmitir: TImage;
-    procedure FormShow(Sender: TObject);
     procedure ImageAdicinarClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
-    { Private declarations }
+    procedure CarregarNFes;
   public
-    { Public declarations }
+
   end;
 
 var
@@ -27,9 +27,8 @@ implementation
 
 uses uDM, uFormNFes_NOVA;
 
-procedure TFormNFesGestao.FormShow(Sender: TObject);
+procedure TFormNFesGestao.CarregarNFes;
 begin
-  inherited;
   try
     with DM.FDQueryNotasFiscaisGET do
     begin
@@ -48,6 +47,12 @@ begin
   end;
 end;
 
+procedure TFormNFesGestao.FormShow(Sender: TObject);
+begin
+  inherited;
+  CarregarNFes;
+end;
+
 procedure TFormNFesGestao.ImageAdicinarClick(Sender: TObject);
 var
   form:TFormNFes_NOVA;
@@ -59,11 +64,12 @@ begin
     form.Position := poScreenCenter;
 
     form.onExibir;
-    form.ShowModal;
+
+    if form.ShowModal=mrok then
+      CarregarNFes;
   finally
     form.Free;
   end;
-
 end;
 
 end.

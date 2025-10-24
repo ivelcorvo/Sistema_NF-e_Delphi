@@ -46,21 +46,13 @@ object FormTemplateNFes_NOVA_EDITAR: TFormTemplateNFes_NOVA_EDITAR
       Height = 15
       Caption = 'Natureza da opera'#231#227'o'
     end
-    object ComboBoxCliente: TComboBox
-      Left = 8
-      Top = 29
-      Width = 723
-      Height = 23
-      Style = csDropDownList
-      TabOrder = 0
-    end
     object EditCFOP: TEdit
       Left = 832
       Top = 29
       Width = 65
       Height = 23
-      MaxLength = 8
-      TabOrder = 1
+      MaxLength = 4
+      TabOrder = 0
       OnKeyPress = EditCFOPKeyPress
     end
     object EditNatureza: TEdit
@@ -68,7 +60,7 @@ object FormTemplateNFes_NOVA_EDITAR: TFormTemplateNFes_NOVA_EDITAR
       Top = 29
       Width = 249
       Height = 23
-      TabOrder = 2
+      TabOrder = 1
     end
     object ButtonCancelar: TButton
       Left = 1168
@@ -76,7 +68,7 @@ object FormTemplateNFes_NOVA_EDITAR: TFormTemplateNFes_NOVA_EDITAR
       Width = 75
       Height = 25
       Caption = 'Cancelar'
-      TabOrder = 3
+      TabOrder = 2
     end
     object ButtonSalvar: TButton
       Left = 1249
@@ -84,6 +76,13 @@ object FormTemplateNFes_NOVA_EDITAR: TFormTemplateNFes_NOVA_EDITAR
       Width = 75
       Height = 25
       Caption = 'Salvar'
+      TabOrder = 3
+    end
+    object DBLookupComboBoxCliente: TDBLookupComboBox
+      Left = 8
+      Top = 29
+      Width = 723
+      Height = 23
       TabOrder = 4
     end
   end
@@ -233,8 +232,12 @@ object FormTemplateNFes_NOVA_EDITAR: TFormTemplateNFes_NOVA_EDITAR
         561FA739B15F55A6A321F70D9E4A0000000049454E44AE426082}
     end
   end
-  object DataSource: TDataSource
-    Left = 80
-    Top = 128
+  object DataSourceNFeProdutos: TDataSource
+    Left = 248
+    Top = 80
+  end
+  object DataSourceClientes: TDataSource
+    Left = 248
+    Top = 24
   end
 end

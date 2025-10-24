@@ -16,14 +16,17 @@ inherited FormNFes_NOVA: TFormNFes_NOVA
     inherited LabelNatureza: TLabel
       StyleElements = [seFont, seClient, seBorder]
     end
-    inherited ComboBoxCliente: TComboBox
-      StyleElements = [seFont, seClient, seBorder]
-    end
     inherited EditCFOP: TEdit
       StyleElements = [seFont, seClient, seBorder]
     end
     inherited EditNatureza: TEdit
       StyleElements = [seFont, seClient, seBorder]
+    end
+    inherited ButtonCancelar: TButton
+      OnClick = ButtonCancelarClick
+    end
+    inherited ButtonSalvar: TButton
+      OnClick = ButtonSalvarClick
     end
   end
   inherited PanelBotoes: TPanel

@@ -8,14 +8,13 @@ uses
   Vcl.DBGrids, Vcl.ExtCtrls, Vcl.ComCtrls, Vcl.Imaging.pngimage,
   FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
   FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
-  FireDAC.Comp.DataSet, FireDAC.Comp.Client;
+  FireDAC.Comp.DataSet, FireDAC.Comp.Client, Vcl.DBCtrls;
 
 type
   TFormTemplateNFes_NOVA_EDITAR = class(TForm)
     PanelNFe: TPanel;
     DBGridProdutosNFe: TDBGrid;
     Label1: TLabel;
-    ComboBoxCliente: TComboBox;
     DateTimeDataEmisao: TDateTimePicker;
     EditCFOP: TEdit;
     EditNatureza: TEdit;
@@ -28,7 +27,9 @@ type
     ImageAdicinar: TImage;
     ButtonCancelar: TButton;
     ButtonSalvar: TButton;
-    DataSource: TDataSource;
+    DataSourceNFeProdutos: TDataSource;
+    DBLookupComboBoxCliente: TDBLookupComboBox;
+    DataSourceClientes: TDataSource;
     procedure EditCFOPKeyPress(Sender: TObject; var Key: Char);
   private
     { Private declarations }
