@@ -11,6 +11,7 @@ type
   TFormNFesProdutos_EDITAR = class(TFormTemplateNFesProdutos_INSERIR_EDITAR)
     procedure ButtonCancelarClick(Sender: TObject);
     procedure EditQuantidadeChange(Sender: TObject);
+    procedure ButtonAdicionarClick(Sender: TObject);
   private
     procedure CarregarProduto;
     procedure CarregaComboBoxProdutos;
@@ -60,6 +61,28 @@ begin
 
     total := StrToFloat(EditPreco.text)*quantidade;
     EditTotal.Text := FloatToStr(total);
+  end;
+end;
+
+procedure TFormNFesProdutos_EDITAR.ButtonAdicionarClick(Sender: TObject);
+begin
+  inherited;
+  try
+    with DM.FDMemTableNFeProdutos DO
+    begin
+      if (Locate('ID_PRODUTO',IDProduto)) then
+      begin
+        Edit;
+        FieldByName('QUANTIDADE').AsInteger := StrToInt(EditQuantidade.Text);
+        FieldByName('VALOR_TOTAL').AsFloat  := StrToInt(EditQuantidade.Text) * FieldByName('VALOR_UNITARIO').AsFloat;
+        Post;
+      end;
+    end;
+    ShowMessage('Item atualizado com sucesso!');
+    ModalResult := mrOk;
+  except
+    on E:Exception do
+      ShowMessage('Houve um erro... Erro: '+E.Message);
   end;
 end;
 

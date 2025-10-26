@@ -30,6 +30,9 @@ inherited FormNFesProdutos_EDITAR: TFormNFesProdutos_EDITAR
   inherited ButtonCancelar: TButton
     OnClick = ButtonCancelarClick
   end
+  inherited ButtonAdicionar: TButton
+    OnClick = ButtonAdicionarClick
+  end
   inherited EditNCM: TEdit
     StyleElements = [seFont, seClient, seBorder]
   end
