@@ -14,6 +14,7 @@ type
     procedure DBLookupComboBoxProdutoClick(Sender: TObject);
     procedure EditQuantidadeChange(Sender: TObject);
   private
+    fdmtProdutos:TFDMemTable;
     procedure CarregaComboBoxProdutos;
     procedure MultiplicaQuantidadePreco;
   public
@@ -31,11 +32,10 @@ uses uFormNFes_NOVA, uDM;
 
 procedure TFormNFesProdutos_INSERIR.CarregaComboBoxProdutos;
 var
-  fdmtProdutos:TFDMemTable;
   id:Integer;
 begin
-  fdmtProdutos := TFDMemTable.Create(nil);
-
+  //  fdmtProdutos := TFDMemTable.Create(nil);
+  fdmtProdutos := TFDMemTable.Create(Self);
   // COPIA ESTRUTUDA E DADOS DE FDMemTableProdutos (QUE JA É COPIA DE FDQueryProdutosGET)
   fdmtProdutos.Close;
   fdmtProdutos.CopyDataSet(DM.FDMemTableProdutos,[coStructure,coAppend]);
