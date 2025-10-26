@@ -247,43 +247,6 @@ begin
   end;
 end;
 
-//procedure TFormNFes_NOVA.ImageEditarClick(Sender: TObject);
-//var
-//  form:TFormNFesProdutos_EDITAR;
-//  IDProduto: Integer;
-//begin
-//  inherited;
-//  form := nil;
-//  try
-//
-//    with DM.FDMemTableNFeProdutos do
-//    begin
-//      if (not Active) or (RecordCount=0) or (IsEmpty) then
-//      begin
-//        ShowMessage('Nenhum produto selecionado!');
-//        Exit;
-//      end
-//      else
-//        IDProduto := FieldByName('ID_PRODUTO').AsInteger;
-//    end;
-//
-//    form           := TFormNFesProdutos_EDITAR.Create(Self);
-//    form.Position  := poScreenCenter;
-//    form.IDProduto := IDProduto;
-//
-//    form.onExibir;
-//
-//    if form.ModalResult=mrCancel then
-//      exit;
-//
-//    if form.ShowModal = mrok then
-//      CarregaNFeProdutos;
-//
-//  finally
-//    form.Free;
-//  end;
-//end;
-
 procedure TFormNFes_NOVA.ImageEditarClick(Sender: TObject);
 var
   form:TFormNFesProdutos_EDITAR;

@@ -12,6 +12,7 @@ type
     ImageTransmitir: TImage;
     procedure ImageAdicinarClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure ImageEditarClick(Sender: TObject);
   private
     procedure CarregarNFes;
   public
@@ -25,7 +26,7 @@ implementation
 
 {$R *.dfm}
 
-uses uDM, uFormNFes_NOVA;
+uses uDM, uFormNFes_NOVA, uFormNFes_EDITAR;
 
 procedure TFormNFesGestao.CarregarNFes;
 begin
@@ -70,6 +71,44 @@ begin
   finally
     form.Free;
   end;
+end;
+
+procedure TFormNFesGestao.ImageEditarClick(Sender: TObject);
+var
+  form: TFormNFes_EDITAR;
+  IDNota: Integer;
+begin
+  inherited;
+
+  form := nil;
+
+  try
+    with DM.FDQueryNotasFiscaisGET do
+    begin
+      if (not Active) or (RecordCount=0) or (IsEmpty) then
+      begin
+        ShowMessage('Nenhuma nota selecionada!');
+        Exit;
+      end
+      else
+        IDNota := FieldByName('ID').AsInteger;
+    end;
+
+    form          := TFormNFes_EDITAR.Create(Self);
+    form.Position := poScreenCenter;
+    form.IDNota   := IDNota;
+
+    form.onExibir;
+
+    if form.ModalResult = mrCancel then
+      exit;
+
+    if form.ShowModal=mrOk then
+      CarregarNFes;
+  finally
+    form.Free;
+  end;
+
 end;
 
 end.
