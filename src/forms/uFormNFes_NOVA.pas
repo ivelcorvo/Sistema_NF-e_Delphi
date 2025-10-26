@@ -61,13 +61,16 @@ end;
 
 procedure TFormNFes_NOVA.ButtonSalvarClick(Sender: TObject);
 var
-  campos_em_branco:string;
-  IDNota, NumNota :Integer;
+  campos_em_branco: string;
+  IDNota, NumNota: Integer;
+  vl_total_nota: Double;
 begin
   inherited;
 
+  vl_total_nota := 0;
+
   campos_em_branco := '';
-  if (DBLookupComboBoxCliente.KeyValue=Null) or (EditCFOP.Text='') or (EditNatureza.Text='') then
+  if (VarIsNull(DBLookupComboBoxCliente.KeyValue)) or (EditCFOP.Text='') or (EditNatureza.Text='') then
   begin
     campos_em_branco := 'Por favor, preencha os campos: ';
     if (DBLookupComboBoxCliente.KeyValue=Null) then
@@ -80,6 +83,15 @@ begin
     RemoveUltimoElemento(campos_em_branco,', ');
     ShowMessage(campos_em_branco);
     Exit;
+  end;
+
+  with DM.FDMemTableNFeProdutos do
+  begin
+    if (not Active) or (RecordCount=0) or (IsEmpty) then
+    begin
+      ShowMessage('Nota sem itens! Por favor adicione.');
+      Exit;
+    end;
   end;
 
   DM.FDConnection.StartTransaction;
@@ -104,18 +116,47 @@ begin
       ParamByName('STATUS').AsString            := 'RASCUNHO';
 
       Open; // NESSE CASO NÃO TEM EXECSQL PQ TEM UM RETORNO
-
-      try
-        IDNota  := FieldByName('ID').AsInteger;
-        NumNota := FieldByName('NUMERO').AsInteger;
-      finally
-        Close;
-      end;
+      IDNota  := FieldByName('ID').AsInteger;
+      NumNota := FieldByName('NUMERO').AsInteger;
+      Close;
     end;
 
     // ADICIONA OS ITENS DA NOTA
+    with DM.FDQueryNotasItensRequest do
+    begin
+      DM.FDMemTableNFeProdutos.First;
+      while not DM.FDMemTableNFeProdutos.Eof do
+      begin
+        Close;
+        SQL.Clear;
 
-    ADICIONA OS ITENS DA NOTA
+        SQL.Text := 'INSERT INTO NOTAS_ITENS (ID_NOTA, ID_PRODUTO, QUANTIDADE, VALOR_UNITARIO) '+
+                    'VALUES (:ID_NOTA, :ID_PRODUTO, :QUANTIDADE, :VALOR_UNITARIO)';
+
+        ParamByName('ID_NOTA').AsInteger      := IDNota;
+        ParamByName('ID_PRODUTO').AsInteger   := DM.FDMemTableNFeProdutos.FieldByName('ID_PRODUTO').AsInteger;
+        ParamByName('QUANTIDADE').AsInteger   := DM.FDMemTableNFeProdutos.FieldByName('QUANTIDADE').AsInteger;
+        ParamByName('VALOR_UNITARIO').AsFloat := DM.FDMemTableNFeProdutos.FieldByName('VALOR_UNITARIO').AsFloat;
+
+        vl_total_nota := vl_total_nota + DM.FDMemTableNFeProdutos.FieldByName('VALOR_TOTAL').AsFloat;
+
+        ExecSQL;
+
+        DM.FDMemTableNFeProdutos.Next;
+      end;
+    end;
+
+    //ATUALIZA VALOR TOTAL DA NOTA
+    with DM.FDQueryNotasFiscaisRequest do
+    begin
+      Close;
+      SQL.Text := 'UPDATE NOTAS_FISCAIS SET '+
+                  'VALOR_TOTAL = :VALOR_TOTAL '+
+                  'WHERE ID = :ID';
+      ParamByName('VALOR_TOTAL').AsFloat := vl_total_nota;
+      ParamByName('ID').AsInteger := IDNota;
+      ExecSQL;
+    end;
 
     DM.FDConnection.Commit;
     ShowMessage(Format('Nota adicinada com sucesso! Nº: %d',[NumNota]));
@@ -123,11 +164,10 @@ begin
   except
     on E:Exception do
     begin
-      ShowMessage('Não foi possível salvar os itens da nota. Houve um erro... Erro: '+E.Message);
       DM.FDConnection.Rollback;
+      ShowMessage('Não foi possível salvar os itens da nota. Houve um erro... Erro: '+E.Message);
     end;
   end;
-
 
 end;
 
@@ -206,6 +246,43 @@ begin
     form.Free;
   end;
 end;
+
+//procedure TFormNFes_NOVA.ImageEditarClick(Sender: TObject);
+//var
+//  form:TFormNFesProdutos_EDITAR;
+//  IDProduto: Integer;
+//begin
+//  inherited;
+//  form := nil;
+//  try
+//
+//    with DM.FDMemTableNFeProdutos do
+//    begin
+//      if (not Active) or (RecordCount=0) or (IsEmpty) then
+//      begin
+//        ShowMessage('Nenhum produto selecionado!');
+//        Exit;
+//      end
+//      else
+//        IDProduto := FieldByName('ID_PRODUTO').AsInteger;
+//    end;
+//
+//    form           := TFormNFesProdutos_EDITAR.Create(Self);
+//    form.Position  := poScreenCenter;
+//    form.IDProduto := IDProduto;
+//
+//    form.onExibir;
+//
+//    if form.ModalResult=mrCancel then
+//      exit;
+//
+//    if form.ShowModal = mrok then
+//      CarregaNFeProdutos;
+//
+//  finally
+//    form.Free;
+//  end;
+//end;
 
 procedure TFormNFes_NOVA.ImageEditarClick(Sender: TObject);
 var
