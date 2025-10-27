@@ -1,6 +1,7 @@
 inherited FormNFesGestao: TFormNFesGestao
   Caption = 'Gest'#227'o NF-es'
   StyleElements = [seFont, seClient, seBorder]
+  OnClose = FormClose
   OnShow = FormShow
   TextHeight = 15
   inherited PanelTitulo: TPanel
@@ -22,6 +23,9 @@ inherited FormNFesGestao: TFormNFesGestao
     StyleElements = [seFont, seClient, seBorder]
     inherited ImageEditar: TImage
       OnClick = ImageEditarClick
+    end
+    inherited ImageExcluir: TImage
+      OnClick = ImageExcluirClick
     end
     inherited ImageAdicinar: TImage
       OnClick = ImageAdicinarClick

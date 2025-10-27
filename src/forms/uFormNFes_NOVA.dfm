@@ -1,6 +1,7 @@
 inherited FormNFes_NOVA: TFormNFes_NOVA
   Caption = 'Nova NF-e'
   StyleElements = [seFont, seClient, seBorder]
+  OnClose = FormClose
   TextHeight = 15
   inherited PanelNFe: TPanel
     StyleElements = [seFont, seClient, seBorder]

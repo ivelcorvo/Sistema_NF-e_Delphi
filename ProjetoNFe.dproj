@@ -207,6 +207,10 @@
             <Form>FormNFes_EDITAR</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="src\forms\uFormNFes_EXCLUIR.pas">
+            <Form>FormNFes_EXCLUIR</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

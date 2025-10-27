@@ -17,6 +17,7 @@ type
     procedure ImageExcluirClick(Sender: TObject);
     procedure ButtonCancelarClick(Sender: TObject);
     procedure ButtonSalvarClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     procedure CarregaProdutos;
     procedure CarregaNFeProdutos;
@@ -59,6 +60,20 @@ begin
   Close;
 end;
 
+procedure TFormNFes_NOVA.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  inherited;
+  inherited;
+  if DM.FDMemTableProdutos.Active then
+    DM.FDMemTableProdutos.Close;
+  if DM.FDMemTableNFeProdutos.Active then
+    DM.FDMemTableNFeProdutos.Close;
+  if DM.FDQueryProdutosGET.Active then
+    DM.FDQueryProdutosGET.Close;
+  if DM.FDQueryClientesGET.Active then
+    DM.FDQueryClientesGET.Close;
+end;
+
 procedure TFormNFes_NOVA.ButtonSalvarClick(Sender: TObject);
 var
   campos_em_branco: string;
@@ -73,7 +88,7 @@ begin
   if (VarIsNull(DBLookupComboBoxCliente.KeyValue)) or (EditCFOP.Text='') or (EditNatureza.Text='') then
   begin
     campos_em_branco := 'Por favor, preencha os campos: ';
-    if (DBLookupComboBoxCliente.KeyValue=Null) then
+    if (VarIsNull(DBLookupComboBoxCliente.KeyValue)) then
       campos_em_branco := campos_em_branco + 'Cliente, ';
     if (EditCFOP.text='') then
       campos_em_branco := campos_em_branco + 'CFOP, ';
@@ -165,7 +180,7 @@ begin
     on E:Exception do
     begin
       DM.FDConnection.Rollback;
-      ShowMessage('Não foi possível salvar os itens da nota. Houve um erro... Erro: '+E.Message);
+      ShowMessage('Não foi possível salvar a nota. Houve um erro... Erro: '+E.Message);
     end;
   end;
 
@@ -255,12 +270,11 @@ begin
   inherited;
   form := nil;
   try
-
     with DM.FDMemTableNFeProdutos do
     begin
       if (not Active) or (RecordCount=0) or (IsEmpty) then
       begin
-        ShowMessage('Nenhum produto selecionado!');
+        ShowMessage('Nenhum item selecionado!');
         Exit;
       end
       else
@@ -274,9 +288,9 @@ begin
     form.onExibir;
 
     if form.ModalResult=mrCancel then
-      exit;
+      Exit;
 
-    if form.ShowModal = mrok then
+    if form.ShowModal = mrOk then
       CarregaNFeProdutos;
 
   finally
@@ -286,9 +300,9 @@ end;
 
 procedure TFormNFes_NOVA.ImageExcluirClick(Sender: TObject);
 var
-  form:TFormNFesProdutos_EXCLUIR;
-  IDProduto:Integer;
-  NMProduto:string;
+  form: TFormNFesProdutos_EXCLUIR;
+  IDProduto: Integer;
+  NMProduto: string;
 begin
   inherited;
   form := nil;
@@ -297,7 +311,7 @@ begin
     begin
       if (not Active) or (RecordCount=0) or (IsEmpty) then
       begin
-        ShowMessage('Nenhum produto selecionado!');
+        ShowMessage('Nenhum item selecionado!');
         Exit;
       end
       else
@@ -310,7 +324,7 @@ begin
     form                           := TFormNFesProdutos_EXCLUIR.Create(Self);
     form.Position                  := poScreenCenter;
     form.IDProduto                 := IDProduto;
-    form.LabelDadosProduto.Caption := 'Nome: '+NMProduto;
+    form.LabelDadosProduto.Caption := 'Nome: '+NMProduto+'.';
 
     if form.ShowModal=mrOk then
       CarregaNFeProdutos;

@@ -57,6 +57,7 @@ object DM: TDM
       '  NF.NUMERO,'
       '  NF.SERIE,'
       '  NF.DATA_EMISSAO,'
+      '  NF.CFOP_PADRAO,'
       '  NF.VALOR_TOTAL,'
       '  NF.STATUS,'
       '  C.NOME AS CLIENTE'

@@ -13,6 +13,8 @@ type
     procedure ImageAdicinarClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure ImageEditarClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure ImageExcluirClick(Sender: TObject);
   private
     procedure CarregarNFes;
   public
@@ -26,7 +28,7 @@ implementation
 
 {$R *.dfm}
 
-uses uDM, uFormNFes_NOVA, uFormNFes_EDITAR;
+uses uDM, uFormNFes_NOVA, uFormNFes_EDITAR, uFormNFes_EXCLUIR;
 
 procedure TFormNFesGestao.CarregarNFes;
 begin
@@ -34,7 +36,7 @@ begin
     with DM.FDQueryNotasFiscaisGET do
     begin
       Close;
-      SQL.Text := 'SELECT NF.ID, NF.NUMERO, NF.SERIE, NF.DATA_EMISSAO, NF.VALOR_TOTAL, NF.STATUS, C.NOME AS CLIENTE '+
+      SQL.Text := 'SELECT NF.ID, NF.NUMERO, NF.SERIE, NF.DATA_EMISSAO, NF.CFOP_PADRAO, NF.VALOR_TOTAL, NF.STATUS, C.NOME AS CLIENTE '+
       'FROM NOTAS_FISCAIS NF '+
       'JOIN CLIENTES C ON C.ID = NF.ID_CLIENTE '+
       'ORDER BY NF.DATA_EMISSAO DESC';
@@ -46,6 +48,13 @@ begin
     on E:Exception do
       ShowMessage('Houve um erro... Erro: '+E.Message);
   end;
+end;
+
+procedure TFormNFesGestao.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  inherited;
+  if DM.FDQueryNotasFiscaisGET.Active then
+    DM.FDQueryNotasFiscaisGET.Close;
 end;
 
 procedure TFormNFesGestao.FormShow(Sender: TObject);
@@ -109,6 +118,42 @@ begin
     form.Free;
   end;
 
+end;
+
+procedure TFormNFesGestao.ImageExcluirClick(Sender: TObject);
+var
+  form: TFormNFes_EXCLUIR;
+  IDNota: Integer;
+  NumNota: Integer;
+begin
+  inherited;
+  form := nil;
+  try
+    with DM.FDQueryNotasFiscaisGET do
+    begin
+      if (not Active) or (RecordCount=0) or (IsEmpty) then
+      begin
+        ShowMessage('Nenhuma NF-e selecionada!');
+        Exit;
+      end
+      else
+      begin
+        IDNota  := FieldByName('ID').AsInteger;
+        NumNota := FieldByName('NUMERO').AsInteger;
+      end;
+    end;
+
+    form                       := TFormNFes_EXCLUIR.Create(Self);
+    form.Position              := poScreenCenter;
+    form.IDNota                := IDNota;
+    form.LabelDadosNfe.Caption := 'NF-e número: '+IntToStr(NumNota);
+
+    if form.ShowModal=mrOk then
+      CarregarNFes;
+
+  finally
+    form.Free;
+  end;
 end;
 
 end.
