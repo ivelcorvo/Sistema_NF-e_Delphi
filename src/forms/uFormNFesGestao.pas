@@ -10,11 +10,13 @@ uses
 type
   TFormNFesGestao = class(TFormTemplateGestao)
     ImageTransmitir: TImage;
+    ImageGerarXML: TImage;
     procedure ImageAdicinarClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure ImageEditarClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure ImageExcluirClick(Sender: TObject);
+    function PermiteAcaoPorStatus():Boolean;
   private
     procedure CarregarNFes;
   public
@@ -29,6 +31,25 @@ implementation
 {$R *.dfm}
 
 uses uDM, uFormNFes_NOVA, uFormNFes_EDITAR, uFormNFes_EXCLUIR;
+
+function TFormNFesGestao.PermiteAcaoPorStatus():Boolean;
+var
+  status: string;
+begin
+  Result := True;
+  with DM.FDQueryNotasFiscaisGET do
+  begin
+    if (Active) and (RecordCount>0) and (not IsEmpty) then
+    begin
+      status := FieldByName('STATUS').AsString;
+      if not(status='RASCUNHO') or not(status='REJEITADA') then
+      begin
+        ShowMessage('NF-e em status: '+status+'. Não é possível editar ou excluir.');
+        Result := False;
+      end;
+    end;
+  end;
+end;
 
 procedure TFormNFesGestao.CarregarNFes;
 begin
@@ -48,19 +69,6 @@ begin
     on E:Exception do
       ShowMessage('Houve um erro... Erro: '+E.Message);
   end;
-end;
-
-procedure TFormNFesGestao.FormClose(Sender: TObject; var Action: TCloseAction);
-begin
-  inherited;
-  if DM.FDQueryNotasFiscaisGET.Active then
-    DM.FDQueryNotasFiscaisGET.Close;
-end;
-
-procedure TFormNFesGestao.FormShow(Sender: TObject);
-begin
-  inherited;
-  CarregarNFes;
 end;
 
 procedure TFormNFesGestao.ImageAdicinarClick(Sender: TObject);
@@ -92,6 +100,10 @@ begin
   form := nil;
 
   try
+
+    if (not PermiteAcaoPorStatus) then
+      Exit;
+
     with DM.FDQueryNotasFiscaisGET do
     begin
       if (not Active) or (RecordCount=0) or (IsEmpty) then
@@ -128,6 +140,10 @@ var
 begin
   inherited;
   form := nil;
+
+  if (not PermiteAcaoPorStatus) then
+    Exit;
+
   try
     with DM.FDQueryNotasFiscaisGET do
     begin
@@ -154,6 +170,19 @@ begin
   finally
     form.Free;
   end;
+end;
+
+procedure TFormNFesGestao.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  inherited;
+  if DM.FDQueryNotasFiscaisGET.Active then
+    DM.FDQueryNotasFiscaisGET.Close;
+end;
+
+procedure TFormNFesGestao.FormShow(Sender: TObject);
+begin
+  inherited;
+  CarregarNFes;
 end;
 
 end.
