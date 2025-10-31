@@ -100,8 +100,23 @@ inherited FormNFesGestao: TFormNFesGestao
         BF4BDFEE338357C000DC12D805DA7AC10437DD029D4EF869DA48DF1F510222F6
         EF9E07FE0BE84F02F4E7340F6E265200B6086ED0AFF8770212F1F7DCCFDEC31A
         FA3579933F01B2B701DFF000BFD90000000049454E44AE426082}
+      OnClick = ImageGerarXMLClick
       ExplicitLeft = 6
       ExplicitTop = 223
     end
+  end
+  object ACBrNFe: TACBrNFe
+    Configuracoes.Geral.SSLLib = libNone
+    Configuracoes.Geral.SSLCryptLib = cryNone
+    Configuracoes.Geral.SSLHttpLib = httpNone
+    Configuracoes.Geral.SSLXmlSignLib = xsNone
+    Configuracoes.Geral.FormatoAlerta = 'TAG:%TAGNIVEL% ID:%ID%/%TAG%(%DESCRICAO%) - %MSG%.'
+    Configuracoes.Arquivos.OrdenacaoPath = <>
+    Configuracoes.WebServices.UF = 'SP'
+    Configuracoes.WebServices.AguardarConsultaRet = 0
+    Configuracoes.WebServices.QuebradeLinha = '|'
+    Configuracoes.RespTec.IdCSRT = 0
+    Left = 104
+    Top = 144
   end
 end
